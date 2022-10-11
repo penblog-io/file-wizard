@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="paneUpperCase" styleClass="background" xmlns="http://javafx.com/javafx/null"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="io.penblog.filewizard.controllers.rename.methods.UpperCase">
+    <children>
+        <Label layoutX="1.0" layoutY="111.0" text="Upper Case" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+        <RadioButton fx:id="rdoAllCharacters" mnemonicParsing="false" text="ALL CHARACTERS" AnchorPane.leftAnchor="0.0"
+                     AnchorPane.topAnchor="25.0">
+            <toggleGroup>
+                <ToggleGroup fx:id="upperCaseOption"/>
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton fx:id="rdoSpecificCharacters" layoutY="74.0" mnemonicParsing="false" text="Specific Characters:"
+                     toggleGroup="$upperCaseOption" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0"/>
+        <TextField fx:id="txtUpperCaseCharacters" layoutX="10.0" layoutY="31.0" AnchorPane.leftAnchor="20.0"
+                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0"/>
+    </children>
+</AnchorPane>

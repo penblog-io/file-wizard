@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="paneSequence" styleClass="background" xmlns="http://javafx.com/javafx/null"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="io.penblog.filewizard.controllers.move.methods.Sequence">
+    <children>
+        <RadioButton fx:id="rdoNumber" mnemonicParsing="false" onAction="#onTypeNumberClick" text="Number"
+                     AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">
+            <toggleGroup>
+                <ToggleGroup fx:id="rdoSequenceType"/>
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton fx:id="rdoLetter" layoutX="10.0" layoutY="10.0" mnemonicParsing="false"
+                     onAction="#onTypeLetterClick" text="Letter" toggleGroup="$rdoSequenceType"
+                     AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="25.0"/>
+        <Label text="Start From" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0"/>
+        <Label layoutX="1.0" layoutY="111.0" text="Sequence" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+        <TextField fx:id="txtStart" prefHeight="25.0" prefWidth="80.0" AnchorPane.leftAnchor="0.0"
+                   AnchorPane.topAnchor="85.0"/>
+        <Label layoutX="128.0" layoutY="85.0" text="Interval" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="60.0"/>
+        <TextField fx:id="txtInterval" layoutX="128.0" layoutY="110.0" prefHeight="25.0" prefWidth="80.0"
+                   AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="85.0"/>
+        <Label layoutX="20.0" layoutY="20.0" text="Mask" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="60.0"/>
+        <TextField fx:id="txtMask" layoutX="180.0" layoutY="84.0" prefHeight="25.0" prefWidth="80.0"
+                   AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="85.0"/>
+        <TextField fx:id="txtLimit" layoutX="270.0" layoutY="83.0" prefHeight="25.0" prefWidth="80.0"
+                   AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="85.0"/>
+        <Label layoutX="270.0" layoutY="59.0" text="Files Per Folder" AnchorPane.leftAnchor="270.0"
+               AnchorPane.topAnchor="60.0"/>
+    </children>
+</AnchorPane>

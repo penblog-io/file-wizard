@@ -1,0 +1,5 @@
+version=2.0.0
+website=https://filewizard.app/
+checkUpdateUrl=https://filewizard.app/api/version
+downloadUrl=https://filewizard.app/download
+docsUrl=https://filewizard.app/attributes

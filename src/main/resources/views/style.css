@@ -1,0 +1,43 @@
+/* .tab-pane {
+    -fx-tab-min-width: 100px;
+    -fx-tab-min-height: 30px;
+    -fx-border-width: 0;
+}
+.tab-pane .tab-down-button {
+    -fx-background-color: #0d6efd;
+}
+.tab-pane .tab-header-background, .tab-pane .tab-content-area {
+    -fx-background-color: #f8f9fa;
+}
+.tab-pane .tab-content-area {
+    -fx-border-width: 1px 0px 0px 0px;
+    -fx-border-color: #adb5bd;
+}
+
+.tab {
+    -fx-border-insets: 0px 0px 0px 0px; 
+    -fx-border-width: 0px 0px 0px 0px;
+    -fx-border-style: none;
+    -fx-border-radius: 0px;
+    -fx-border-image-width: 0px;
+} */
+
+.pane-action {
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #adb5bd;
+}
+
+.table-cell-error .text {
+    -fx-fill: #E81123;
+}
+
+.move-specific-text-light, .move-specific-text-dark {
+    -fx-label-padding: 5px;
+}
+.move-specific-text-light {
+    -fx-background-color:  #dee2e6;
+}
+.move-specific-text-dark {
+    -fx-background-color:  #111;
+
+}

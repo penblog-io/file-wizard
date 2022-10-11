@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="paneRemove" styleClass="background" xmlns="http://javafx.com/javafx/null"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="io.penblog.filewizard.controllers.rename.methods.Remove">
+    <children>
+        <Label layoutX="1.0" layoutY="111.0" text="Remove" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+        <TextField fx:id="txtRemove" layoutX="75.0" layoutY="107.0" AnchorPane.leftAnchor="0.0"
+                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0"/>
+        <CheckBox fx:id="cboCaseInsensitive" mnemonicParsing="false" text="Case Insensitive" AnchorPane.leftAnchor="0.0"
+                  AnchorPane.topAnchor="60.0"/>
+        <CheckBox fx:id="cboRegex" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Regular Expression"
+                  AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="60.0"/>
+    </children>
+</AnchorPane>

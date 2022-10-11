@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="paneReplace" styleClass="background" xmlns="http://javafx.com/javafx/null"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="io.penblog.filewizard.controllers.rename.methods.Replace">
+    <children>
+        <Label layoutX="1.0" layoutY="111.0" text="Find" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+        <TextField fx:id="txtFind" layoutX="75.0" layoutY="107.0" AnchorPane.leftAnchor="0.0"
+                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0"/>
+        <TextField fx:id="txtReplace" layoutX="85.0" layoutY="117.0" AnchorPane.leftAnchor="0.0"
+                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0"/>
+        <Label layoutX="11.0" layoutY="121.0" text="Replace With" AnchorPane.leftAnchor="0.0"
+               AnchorPane.topAnchor="60.0"/>
+        <fx:include source="../../components/attributes.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="135.0"/>
+    </children>
+</AnchorPane>

@@ -1,0 +1,317 @@
+{
+  "dateAccessed": [
+    [
+      "22-12",
+      "{dateAccessed:yy-MM}",
+      ""
+    ],
+    [
+      "2022-12",
+      "{dateAccessed:yyyy-MM}",
+      ""
+    ],
+    [
+      "2022-Dec",
+      "{dateAccessed:yyyy-MMM}",
+      ""
+    ],
+    [
+      "2022-December",
+      "{dateAccessed:yyyy-MMMM}",
+      ""
+    ],
+    [
+      "2022-12-30",
+      "{dateAccessed:yyyy-MM-dd}",
+      ""
+    ],
+    [
+      "2022-Dec-30",
+      "{dateAccessed:yyyy-MMM-dd}",
+      ""
+    ],
+    [
+      "2022-Dec-30 Fri",
+      "{dateAccessed:yyyy-MMM-dd E}",
+      ""
+    ],
+    [
+      "2022-Dec-30 Friday",
+      "{dateAccessed:yyyy-MMM-dd EEEE}",
+      ""
+    ],
+    [
+      "2022-December-30",
+      "{dateAccessed:yyyy-MMMM-dd}",
+      ""
+    ],
+    [
+      "2022-12-30-2350",
+      "{dateAccessed:yyyy-MM-dd-HHmm}",
+      ""
+    ],
+    [
+      "2022-12-30-235010",
+      "{dateAccessed:yyyy-MM-dd-HHmmss}",
+      ""
+    ]
+  ],
+  "dateCreated": [
+    [
+      "22-12",
+      "{dateCreated:yy-MM}",
+      ""
+    ],
+    [
+      "2022-12",
+      "{dateCreated:yyyy-MM}",
+      ""
+    ],
+    [
+      "2022-Dec",
+      "{dateCreated:yyyy-MMM}",
+      ""
+    ],
+    [
+      "2022-December",
+      "{dateCreated:yyyy-MMMM}",
+      ""
+    ],
+    [
+      "2022-12-30",
+      "{dateCreated:yyyy-MM-dd}",
+      ""
+    ],
+    [
+      "2022-Dec-30",
+      "{dateCreated:yyyy-MMM-dd}",
+      ""
+    ],
+    [
+      "2022-Dec-30 Fri",
+      "{dateCreated:yyyy-MMM-dd E}",
+      ""
+    ],
+    [
+      "2022-Dec-30 Friday",
+      "{dateCreated:yyyy-MMM-dd EEEE}",
+      ""
+    ],
+    [
+      "2022-December-30",
+      "{dateCreated:yyyy-MMMM-dd}",
+      ""
+    ],
+    [
+      "2022-12-30-2350",
+      "{dateCreated:yyyy-MM-dd-HHmm}",
+      ""
+    ],
+    [
+      "2022-12-30-235010",
+      "{dateCreated:yyyy-MM-dd-HHmmss}",
+      ""
+    ]
+  ],
+  "dateModified": [
+    [
+      "22-12",
+      "{dateModified:yy-MM}",
+      ""
+    ],
+    [
+      "2022-12",
+      "{dateModified:yyyy-MM}",
+      ""
+    ],
+    [
+      "2022-Dec",
+      "{dateModified:yyyy-MMM}",
+      ""
+    ],
+    [
+      "2022-December",
+      "{dateModified:yyyy-MMMM}",
+      ""
+    ],
+    [
+      "2022-12-30",
+      "{dateModified:yyyy-MM-dd}",
+      ""
+    ],
+    [
+      "2022-Dec-30",
+      "{dateModified:yyyy-MMM-dd}",
+      ""
+    ],
+    [
+      "2022-Dec-30 Fri",
+      "{dateModified:yyyy-MMM-dd E}",
+      ""
+    ],
+    [
+      "2022-Dec-30 Friday",
+      "{dateModified:yyyy-MMM-dd EEEE}",
+      ""
+    ],
+    [
+      "2022-December-30",
+      "{dateModified:yyyy-MMMM-dd}",
+      ""
+    ],
+    [
+      "2022-12-30-2350",
+      "{dateModified:yyyy-MM-dd-HHmm}",
+      ""
+    ],
+    [
+      "2022-12-30-235010",
+      "{dateModified:yyyy-MM-dd-HHmmss}",
+      ""
+    ]
+  ],
+  "dateTaken": [
+    [
+      "22-12",
+      "{dateTaken:yy-MM}",
+      ""
+    ],
+    [
+      "2022-12",
+      "{dateTaken:yyyy-MM}",
+      ""
+    ],
+    [
+      "2022-Dec",
+      "{dateTaken:yyyy-MMM}",
+      ""
+    ],
+    [
+      "2022-December",
+      "{dateTaken:yyyy-MMMM}",
+      ""
+    ],
+    [
+      "2022-12-30",
+      "{dateTaken:yyyy-MM-dd}",
+      ""
+    ],
+    [
+      "2022-Dec-30",
+      "{dateTaken:yyyy-MMM-dd}",
+      ""
+    ],
+    [
+      "2022-Dec-30 Fri",
+      "{dateTaken:yyyy-MMM-dd E}",
+      ""
+    ],
+    [
+      "2022-Dec-30 Friday",
+      "{dateTaken:yyyy-MMM-dd EEEE}",
+      ""
+    ],
+    [
+      "2022-December-30",
+      "{dateTaken:yyyy-MMMM-dd}",
+      ""
+    ],
+    [
+      "2022-12-30-2350",
+      "{dateTaken:yyyy-MM-dd-HHmm}",
+      ""
+    ],
+    [
+      "2022-12-30-235010",
+      "{dateTaken:yyyy-MM-dd-HHmmss}",
+      ""
+    ]
+  ],
+  "fileName": [
+    [
+      "File name",
+      "{fileName}",
+      ""
+    ],
+    [
+      "File name [0,4]",
+      "{fileName:0,4}",
+      ""
+    ],
+    [
+      "File name [0,8]",
+      "{fileName:0,8}",
+      ""
+    ]
+  ],
+  "fileExtension": [
+    [
+      "File Extension (jpg, docx, etc.)",
+      "{fileExtension}",
+      ""
+    ]
+  ],
+  "fileSize": [
+    [
+      "Byte",
+      "{fileSize}",
+      ""
+    ],
+    [
+      "Kilobyte (KB)",
+      "{fileSize:kb}",
+      ""
+    ],
+    [
+      "Megabyte (MB)",
+      "{fileSize:mb}",
+      ""
+    ],
+    [
+      "Gigabyte (GB)",
+      "{fileSize:gb}",
+      ""
+    ],
+    [
+      "Terabyte (TB)",
+      "{fileSize:tb}",
+      ""
+    ]
+  ],
+  "imageMake": [
+    [
+      "Camera Make (Canon, Nikon etc.)",
+      "{imageMake}",
+      ""
+    ]
+  ],
+  "imageModel": [
+    [
+      "Camera Make (5D Mark III, D750 etc.)",
+      "{imageModel}",
+      ""
+    ]
+  ],
+  "sequence": [
+    [
+      "1,2,3,4,5...",
+      "{sequence:number,1,1,1,1}",
+      ""
+    ],
+    [
+      "100,99,98,97,96...",
+      "{sequence:number,100,-1,1,1}",
+      ""
+    ],
+    [
+      "A,B,C,D,E...",
+      "{sequence:letter,A,1,1,1}",
+      ""
+    ],
+    [
+      "Z,Y,X,W,V...",
+      "{sequence:letter,Z,-1,1,1}",
+      ""
+    ]
+  ]
+}
