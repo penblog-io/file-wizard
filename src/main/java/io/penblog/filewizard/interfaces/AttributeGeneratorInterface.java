@@ -8,7 +8,13 @@ import java.io.IOException;
 
 public interface AttributeGeneratorInterface {
 
+    /**
+     * Generate attribute from item
+     */
     String generate(Item item, String attributeValue) throws IOException, AttributeNotFoundException;
 
+    /**
+     * Validate if the attribute value is valid
+     */
     void validateAttributeValue(String attributeValue) throws IllegalAttributeValueException;
 }

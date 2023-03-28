@@ -2,11 +2,12 @@ package io.penblog.filewizard.states;
 
 import io.penblog.filewizard.enums.Attribute;
 import io.penblog.filewizard.enums.MoveMethod;
+import io.penblog.filewizard.interfaces.StateInterface;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class MoveState {
+public class MoveState implements StateInterface {
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 

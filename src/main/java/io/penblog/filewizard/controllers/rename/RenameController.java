@@ -1,9 +1,14 @@
 package io.penblog.filewizard.controllers.rename;
 
+import io.penblog.filewizard.components.Item;
+import io.penblog.filewizard.enums.RenameMethod;
+import io.penblog.filewizard.guis.dialog.FileDialog;
 import io.penblog.filewizard.guis.dialog.InfoBox;
+import io.penblog.filewizard.guis.dialog.actions.TableAction;
 import io.penblog.filewizard.services.RenamerService;
 import io.penblog.filewizard.services.ServiceContainer;
 import io.penblog.filewizard.services.SettingService;
+import io.penblog.filewizard.states.RenameState;
 import javafx.beans.value.ObservableValueBase;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -12,10 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
-import io.penblog.filewizard.components.Item;
-import io.penblog.filewizard.enums.RenameMethod;
-import io.penblog.filewizard.guis.dialog.FileDialog;
-import io.penblog.filewizard.states.RenameState;
 
 import java.io.File;
 import java.util.List;
@@ -95,7 +96,6 @@ public class RenameController {
         event.consume();
     }
 
-
     private void setFiles(List<File> files) {
         if (files.size() > 0) {
             renamerService.setFiles(files);
@@ -107,6 +107,8 @@ public class RenameController {
     }
 
     private void setupTableView() {
+        TableAction.initialize(tbRename);
+
         tbRename.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         tbRename.setItems(renamerService.getItems());
         renameState.addPropertyChangeListener(evt -> {

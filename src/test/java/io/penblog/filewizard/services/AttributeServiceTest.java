@@ -89,6 +89,9 @@ class AttributeServiceTest {
                 arguments("FileWizard-{dateTaken:yyyy-MM-dd}", List.of(
                         new Attribute("", io.penblog.filewizard.enums.Attribute.DATE_TAKEN, "yyyy-MM-dd", true)
                 )),
+                arguments("FileWizard-{dateTaken:yyyy-MM-dd hh:ss}", List.of(
+                        new Attribute("", io.penblog.filewizard.enums.Attribute.DATE_TAKEN, "yyyy-MM-dd hh:ss", true)
+                )),
                 arguments("FileWizard-{ dateCreated : dd }", List.of(
                         new Attribute("", io.penblog.filewizard.enums.Attribute.DATE_CREATED, "dd", true)
                 )),

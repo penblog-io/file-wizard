@@ -2,11 +2,12 @@ package io.penblog.filewizard.states;
 
 import io.penblog.filewizard.enums.Attribute;
 import io.penblog.filewizard.enums.RenameMethod;
+import io.penblog.filewizard.interfaces.StateInterface;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class RenameState {
+public class RenameState implements StateInterface {
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 

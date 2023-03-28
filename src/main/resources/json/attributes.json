@@ -251,6 +251,7 @@
       ""
     ]
   ],
+
   "fileSize": [
     [
       "Byte",
@@ -278,20 +279,38 @@
       ""
     ]
   ],
-  "imageMake": [
+
+  "cameraMake": [
     [
       "Camera Make (Canon, Nikon etc.)",
-      "{imageMake}",
+      "{cameraMake}",
       ""
     ]
   ],
-  "imageModel": [
+  "cameraModel": [
     [
       "Camera Make (5D Mark III, D750 etc.)",
-      "{imageModel}",
+      "{cameraModel}",
       ""
     ]
   ],
+
+  "imageWidth": [
+    [
+      "Image width in pixel unit (ie: 1920)",
+      "{imageWith}",
+      ""
+    ]
+  ],
+
+  "imageHeight": [
+    [
+      "Image width in pixel unit (ie: 1080)",
+      "{imageHeight}",
+      ""
+    ]
+  ],
+
   "sequence": [
     [
       "1,2,3,4,5...",

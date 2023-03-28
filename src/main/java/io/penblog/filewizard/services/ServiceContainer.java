@@ -75,9 +75,21 @@ public class ServiceContainer {
             attributeService.registerAttributeGenerator(Attribute.FILE_NAME, new FileName());
             attributeService.registerAttributeGenerator(Attribute.FILE_EXTENSION, new FileExtension());
             attributeService.registerAttributeGenerator(Attribute.FILE_SIZE, new FileSize());
+            attributeService.registerAttributeGenerator(Attribute.FILE_TYPE, new FileType());
+            attributeService.registerAttributeGenerator(Attribute.MIME_TYPE, new MimeType());
 
-            attributeService.registerAttributeGenerator(Attribute.IMAGE_MAKE, new ImageMake());
-            attributeService.registerAttributeGenerator(Attribute.IMAGE_MODEL, new ImageModel());
+            attributeService.registerAttributeGenerator(Attribute.CAMERA_MAKE, new CameraMake());
+            attributeService.registerAttributeGenerator(Attribute.CAMERA_MODEL, new CameraModel());
+            attributeService.registerAttributeGenerator(Attribute.IMAGE_WIDTH, new ImageWidth());
+            attributeService.registerAttributeGenerator(Attribute.IMAGE_HEIGHT, new ImageHeight());
+            attributeService.registerAttributeGenerator(Attribute.LENS_MODEL, new LensModel());
+            attributeService.registerAttributeGenerator(Attribute.SHUTTER_SPEED, new ShutterSpeed());
+            attributeService.registerAttributeGenerator(Attribute.F_NUMBER, new FNumber());
+            attributeService.registerAttributeGenerator(Attribute.APERTURE_VALUE, new ApertureValue());
+            attributeService.registerAttributeGenerator(Attribute.ISO, new ISO());
+            attributeService.registerAttributeGenerator(Attribute.FOCAL_LENGTH, new FocalLength());
+            attributeService.registerAttributeGenerator(Attribute.AUTHOR, new Author());
+            attributeService.registerAttributeGenerator(Attribute.COPYRIGHT, new Copyright());
 
             attributeService.registerAttributeGenerator(Attribute.SEQUENCE, new io.penblog.filewizard.attributes.Sequence());
         }

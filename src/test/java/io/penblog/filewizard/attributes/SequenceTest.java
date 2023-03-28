@@ -23,12 +23,8 @@ class SequenceTest {
         item.setIndex(index);
 
         Sequence attribute = new Sequence();
-        try {
-            String value = attribute.generate(item, attributeValue);
-            assertEquals(expected, value);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String value = attribute.generate(item, attributeValue);
+        assertEquals(expected, value);
     }
 
     static Stream<Arguments> generateData() {

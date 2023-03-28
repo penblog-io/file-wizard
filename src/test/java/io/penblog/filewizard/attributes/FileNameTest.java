@@ -21,12 +21,8 @@ class FileNameTest {
     void generate(Item item, String attributeValue, String expected) {
 
         FileName attribute = new FileName();
-        try {
-            String value = attribute.generate(item, attributeValue);
-            assertEquals(expected, value);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String value = attribute.generate(item, attributeValue);
+        assertEquals(expected, value);
     }
 
     static Stream<Arguments> generateData() {

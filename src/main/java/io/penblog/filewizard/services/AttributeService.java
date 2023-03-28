@@ -18,9 +18,11 @@ import java.util.stream.Collectors;
 
 public class AttributeService {
 
-    private final Map<io.penblog.filewizard.enums.Attribute, AttributeGeneratorInterface> attributeGenerators = new HashMap<>();
+    private final Map<io.penblog.filewizard.enums.Attribute, AttributeGeneratorInterface>
+            attributeGenerators = new HashMap<>();
 
-    public void registerAttributeGenerator(io.penblog.filewizard.enums.Attribute attribute, AttributeGeneratorInterface attributeGenerator) {
+    public void registerAttributeGenerator(io.penblog.filewizard.enums.Attribute attribute,
+                                           AttributeGeneratorInterface attributeGenerator) {
         attributeGenerators.put(attribute, attributeGenerator);
     }
 
@@ -64,11 +66,17 @@ public class AttributeService {
                 .results()
                 .map(matches -> {
                     String originalString = matches.group(1);
-                    String[] pieces = originalString.split(":");
+                    String attributeName, attributeValue = "";
 
-                    String attributeName = pieces.length >= 1 ? pieces[0].trim() : null;
-                    String attributeValue = pieces.length == 2 ? pieces[1].trim() : "";
-                    io.penblog.filewizard.enums.Attribute attribute = EnumHelper.getByKey(io.penblog.filewizard.enums.Attribute.class, attributeName);
+                    int i = originalString.indexOf(":");
+                    if(i > 0) {
+                        attributeName = originalString.substring(0, i).trim();
+                        attributeValue = originalString.substring(i + 1).trim();
+                    }
+                    else attributeName = originalString.trim();
+
+                    io.penblog.filewizard.enums.Attribute attribute =
+                            EnumHelper.getByKey(io.penblog.filewizard.enums.Attribute.class, attributeName);
 
                     boolean isValidAttributeValue = true;
                     if (attribute != null) {

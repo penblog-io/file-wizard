@@ -1,5 +1,6 @@
 package io.penblog.filewizard.controllers.move;
 
+import io.penblog.filewizard.guis.dialog.actions.TableAction;
 import javafx.beans.value.ObservableValueBase;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -115,7 +116,8 @@ public class MoveController {
     }
 
     private void setupTableView() {
-        tbMove.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        TableAction.initialize(tbMove);
+
         tbMove.setItems(moverService.getItems());
         moveState.addPropertyChangeListener(evt -> {
             if ("invalidateTableData".equals(evt.getPropertyName())) {

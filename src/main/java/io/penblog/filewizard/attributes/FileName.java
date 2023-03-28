@@ -15,7 +15,7 @@ public class FileName implements AttributeGeneratorInterface {
      *                       part 2: end index
      */
     @Override
-    public String generate(Item item, String attributeValue) throws IOException {
+    public String generate(Item item, String attributeValue) {
         String name = Files.getName(item.getFile());
 
         if (!attributeValue.isEmpty()) {

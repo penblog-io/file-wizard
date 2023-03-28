@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneInfo" prefWidth="250.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.penblog.filewizard.controllers.components.Info">
+    <children>
+      <VBox fx:id="boxInfo" prefWidth="248.0">
+         <children>
+            <VBox fx:id="boxGeneral" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <AnchorPane>
+                     <children>
+                        <Label styleClass="info-title" text="General" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="2.0" top="2.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <GridPane hgap="5.0" vgap="5.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="159.0" prefWidth="165.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                      <RowConstraints vgrow="SOMETIMES" />
+                      <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Filename:" />
+                        <Label fx:id="lbFilename" alignment="TOP_LEFT" contentDisplay="TOP" text="                                            " GridPane.columnIndex="1" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Location:" GridPane.rowIndex="1" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Size:" GridPane.rowIndex="2" />
+                        <Label fx:id="lbFileSize" alignment="TOP_LEFT" contentDisplay="TOP" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Created:" GridPane.rowIndex="3" />
+                        <Label fx:id="lbCreatedDate" alignment="TOP_LEFT" contentDisplay="TOP" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Modified:" GridPane.rowIndex="4" />
+                        <Label fx:id="lbModifiedDate" alignment="TOP_LEFT" contentDisplay="TOP" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Accessed:" GridPane.rowIndex="5" />
+                        <Label fx:id="lbAccessedDate" alignment="TOP_LEFT" contentDisplay="TOP" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Hyperlink fx:id="lnkLocation" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox fx:id="boxImage">
+               <children>
+                  <AnchorPane>
+                     <children>
+                        <Label styleClass="info-title" text="Image" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="2.0" top="2.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <GridPane hgap="5.0" vgap="5.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label fx:id="lbTest" nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Date Taken:" />
+                        <Label fx:id="lbImageTakenDate" alignment="TOP_LEFT" contentDisplay="TOP" nodeOrientation="LEFT_TO_RIGHT" text="                                            " GridPane.columnIndex="1" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Type:" GridPane.rowIndex="1" />
+                        <Label fx:id="lbImageFileType" alignment="TOP_LEFT" contentDisplay="TOP" nodeOrientation="LEFT_TO_RIGHT" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Wdith:" GridPane.rowIndex="2" />
+                        <Label fx:id="lbImageWidth" alignment="TOP_LEFT" contentDisplay="TOP" nodeOrientation="LEFT_TO_RIGHT" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Height:" GridPane.rowIndex="3" />
+                        <Label fx:id="lbImageHeight" alignment="TOP_LEFT" contentDisplay="TOP" nodeOrientation="LEFT_TO_RIGHT" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="lbImageCameraMaker" alignment="TOP_LEFT" contentDisplay="TOP" nodeOrientation="LEFT_TO_RIGHT" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="lbImageCameraModel" alignment="TOP_LEFT" contentDisplay="TOP" nodeOrientation="LEFT_TO_RIGHT" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Camera Maker:" GridPane.rowIndex="4" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Camera Model:" GridPane.rowIndex="5" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="F-number:" GridPane.rowIndex="7" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Shutter Speed:" GridPane.rowIndex="8" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="ISO:" GridPane.rowIndex="9" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Focal Length:" GridPane.rowIndex="11" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Lens:" GridPane.rowIndex="6" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Author:" GridPane.rowIndex="12" />
+                        <Label fx:id="lbImageLensModel" nodeOrientation="LEFT_TO_RIGHT" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="lbImageFNumber" nodeOrientation="LEFT_TO_RIGHT" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="lbImageShutterSpeed" nodeOrientation="LEFT_TO_RIGHT" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="lbImageISO" nodeOrientation="LEFT_TO_RIGHT" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label fx:id="lbImageFocalLength" nodeOrientation="LEFT_TO_RIGHT" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <Label fx:id="lbImageAuthor" nodeOrientation="LEFT_TO_RIGHT" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Copyright:" GridPane.rowIndex="13" />
+                        <Label fx:id="lbImageCopyright" nodeOrientation="LEFT_TO_RIGHT" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefWidth="80.0" text="Aperture Value:" GridPane.rowIndex="10" />
+                        <Label fx:id="lbImageApertureValue" nodeOrientation="LEFT_TO_RIGHT" text="                                            " GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </GridPane>
+                  <AnchorPane>
+                     <children>
+                        <ImageView fx:id="imgThumbnail" fitHeight="200.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </VBox>
+    </children>
+   <styleClass>
+      <String fx:value="background" />
+      <String fx:value="pane-info" />
+   </styleClass>
+</AnchorPane>

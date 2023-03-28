@@ -41,3 +41,15 @@
     -fx-background-color:  #111;
 
 }
+
+.pane-info Label, .pane-info Hyperlink {
+    -fx-wrap-text: true;
+    -fx-alignment: top-left;
+    -fx-text-alignment: left;
+}
+.info-title {
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #999;
+    -fx-border-style: solid;
+    -fx-width: 250px;
+}

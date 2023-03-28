@@ -28,7 +28,7 @@ public class Sequence implements AttributeGeneratorInterface {
      *                       result: 00010
      */
     @Override
-    public String generate(Item item, String attributeValue) throws IOException {
+    public String generate(Item item, String attributeValue) {
         String value = "";
         List<String> parts = Arrays.stream(attributeValue.split(",")).map(String::trim).toList();
         String type = parts.get(0);

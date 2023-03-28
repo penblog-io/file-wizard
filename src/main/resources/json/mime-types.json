@@ -1,0 +1,34 @@
+{
+  "image/bmp": "bmp",
+  "image/gif": "gif",
+  "image/vnd.microsoft.icon": "ico",
+  "image/heic": "heic",
+  "image/heif": "heif",
+  "image/jpeg": "jpeg",
+  "image/png": "png",
+  "image/svg+xml": "svg",
+  "image/apng": "apng",
+  "image/avif": "avif",
+  "image/webp": "webp",
+
+
+  "audio/wave": "wav",
+  "audio/wav": "wav",
+  "audio/x-wav": "wav",
+  "audio/x-pn-wav": "wav",
+  "audio/webm": "webm",
+  "audio/ogg": "ogg",
+
+
+  "video/3gpp": "3gpp",
+  "video/3gpp2": "3gpp2",
+  "video/jpeg2000": "jpeg2000",
+  "video/mj2": "mj2",
+  "video/mp4": "mp4",
+  "video/mpeg": "mpeg",
+  "video/mpeg4-generic": "mpeg4-generic",
+  "video/nv": "nv",
+  "video/ogg": "ogg",
+  "video/quicktime": "quicktime",
+  "video/raw": "raw"
+}

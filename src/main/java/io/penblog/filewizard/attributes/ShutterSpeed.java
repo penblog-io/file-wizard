@@ -7,10 +7,10 @@ import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
 
 import java.io.IOException;
 
-public class ImageModel implements AttributeGeneratorInterface {
+public class ShutterSpeed implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException, AttributeNotFoundException {
-        return Files.getImageModel(item.getFile());
+        return Files.getShutterSpeed(item.getFile());
     }
 
     @Override
