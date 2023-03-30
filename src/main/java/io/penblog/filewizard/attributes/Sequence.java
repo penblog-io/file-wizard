@@ -3,12 +3,15 @@ package io.penblog.filewizard.attributes;
 import io.penblog.filewizard.components.Item;
 import io.penblog.filewizard.exceptions.IllegalAttributeValueException;
 import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
-
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+
+/**
+ * Generate sequential a number or letter based on provided attribute values
+ * attribute: {sequence:options}
+ */
 public class Sequence implements AttributeGeneratorInterface {
 
     private final static String NUMBER = "number";
@@ -50,6 +53,14 @@ public class Sequence implements AttributeGeneratorInterface {
         return value;
     }
 
+    /**
+     * validate 5 options within the attribute value
+     *          part 1: a number or a letter
+     *          part 2: a number or a letter
+     *          part 3: a number
+     *          part 4: a number
+     *          part 5: a string
+     */
     @Override
     public void validateAttributeValue(String attributeValue) throws IllegalAttributeValueException {
 
@@ -73,6 +84,10 @@ public class Sequence implements AttributeGeneratorInterface {
         if (!isValid) throw new IllegalAttributeValueException();
     }
 
+
+    /**
+     * Generate number sequences
+     */
     private String getSequentNumber(int position, int start, String mask) {
 
         int sequenceInt = start + position;
@@ -84,6 +99,9 @@ public class Sequence implements AttributeGeneratorInterface {
         return sequence;
     }
 
+    /**
+     * Generate letter sequences
+     */
     private String getSequentLetters(int position, String start, String mask) {
         boolean isLowerCase = isLowerCase(start.charAt(0));
         char[] chars = start.toLowerCase().toCharArray();
@@ -112,6 +130,10 @@ public class Sequence implements AttributeGeneratorInterface {
         return sequence;
     }
 
+
+    /**
+     * check if a string is all numbers
+     */
     private boolean isNumeric(String str) {
         if (str == null) return false;
         try {
@@ -122,11 +144,17 @@ public class Sequence implements AttributeGeneratorInterface {
         return true;
     }
 
+    /**
+     * check if a string is all letters
+     */
     private boolean isLetters(String str) {
         Pattern pattern = Pattern.compile("[a-zA-Z]+");
         return pattern.matcher(str).matches();
     }
 
+    /**
+     * check if a character is lower case
+     */
     private boolean isLowerCase(char c) {
         return (int) c >= 97 && (int) c <= 122;
     }

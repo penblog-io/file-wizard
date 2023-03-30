@@ -10,6 +10,9 @@ import io.penblog.filewizard.enums.options.Option;
 import io.penblog.filewizard.services.ServiceContainer;
 import io.penblog.filewizard.states.RenameState;
 
+/**
+ * Append class controller manages "Append" option on the UI
+ */
 public class Append {
 
     @FXML

@@ -7,6 +7,10 @@ import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
 
 import java.io.IOException;
 
+/**
+ * Retrieve Author attribute from a file if available. This field is also known as Artist
+ * attribute: {author}
+ */
 public class Author implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException, AttributeNotFoundException {

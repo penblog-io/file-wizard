@@ -15,7 +15,10 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-
+/**
+ * This is a simplified version of Dependency Injection
+ * ServiceContainer contains all the services ready for use
+ */
 public class ServiceContainer {
 
     private static SettingService settingService;

@@ -7,6 +7,10 @@ import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
 
 import java.io.IOException;
 
+/**
+ * Retrieve date taken of a media file
+ * attribute: {dateTaken:format}
+ */
 public class DateTaken implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException, AttributeNotFoundException {

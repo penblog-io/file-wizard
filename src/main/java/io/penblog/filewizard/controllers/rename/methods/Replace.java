@@ -10,6 +10,9 @@ import io.penblog.filewizard.enums.RenameMethod;
 import io.penblog.filewizard.services.ServiceContainer;
 import io.penblog.filewizard.states.RenameState;
 
+/**
+ * Replace class controller manages "Replace" option on the UI
+ */
 public class Replace {
 
     @FXML

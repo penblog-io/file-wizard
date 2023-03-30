@@ -6,6 +6,9 @@ import io.penblog.filewizard.exceptions.AttributeNotFoundException;
 
 import java.io.IOException;
 
+/**
+ * To register a new Attribute, it must implement this AttributeGeneratorInterface
+ */
 public interface AttributeGeneratorInterface {
 
     /**

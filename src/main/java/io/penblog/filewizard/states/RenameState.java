@@ -7,6 +7,9 @@ import io.penblog.filewizard.interfaces.StateInterface;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+/**
+ * RenameState class manages states for Rename UI tab
+ */
 public class RenameState implements StateInterface {
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
@@ -29,6 +32,9 @@ public class RenameState implements StateInterface {
         return selectedAttribute;
     }
 
+    /**
+     * setSelectedAttribute fires "selectedAttribute" event when an attribute is selected.
+     */
     public void setSelectedAttribute(Attribute selectedAttribute) {
         Attribute oldValue = this.selectedAttribute;
         this.selectedAttribute = selectedAttribute;
@@ -39,6 +45,9 @@ public class RenameState implements StateInterface {
         return selectedAttributeFormat;
     }
 
+    /**
+     * setSelectedAttributeFormat fires "selectedAttributeFormat" event when an attribute format is selected.
+     */
     public void setSelectedAttributeFormat(String selectedAttributeFormat) {
         String oldValue = this.selectedAttributeFormat;
         this.selectedAttributeFormat = selectedAttributeFormat;
@@ -49,12 +58,18 @@ public class RenameState implements StateInterface {
         return selectedMethod;
     }
 
+    /**
+     * setSelectedMethod fires "selectedMethod" event when a rename method is selected.
+     */
     public void setSelectedMethod(RenameMethod selectedMethod) {
         RenameMethod oldValue = this.selectedMethod;
         this.selectedMethod = selectedMethod;
         support.firePropertyChange("selectedMethod", oldValue, this.selectedMethod);
     }
 
+    /**
+     * when invalidateTableData is called, it fires "invalidateTableData" event.
+     */
     public void invalidateTableData() {
         support.firePropertyChange("invalidateTableData", null, null);
     }

@@ -10,7 +10,9 @@ import io.penblog.filewizard.enums.RenameMethod;
 import io.penblog.filewizard.services.ServiceContainer;
 import io.penblog.filewizard.states.RenameState;
 
-
+/**
+ * NewNaem class controller manages "NewName" option on the UI
+ */
 public class NewName {
 
     @FXML

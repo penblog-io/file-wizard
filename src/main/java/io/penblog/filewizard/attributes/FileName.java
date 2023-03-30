@@ -4,10 +4,12 @@ import io.penblog.filewizard.components.Item;
 import io.penblog.filewizard.exceptions.IllegalAttributeValueException;
 import io.penblog.filewizard.helpers.Files;
 import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
-
-import java.io.IOException;
 import java.util.regex.Pattern;
 
+/**
+ * Retrieve a file name, DOES NOT include file extension
+ * attribute: {fileName}
+ */
 public class FileName implements AttributeGeneratorInterface {
     /**
      * @param attributeValue Provide start and end to indexes to get substring of the file name:

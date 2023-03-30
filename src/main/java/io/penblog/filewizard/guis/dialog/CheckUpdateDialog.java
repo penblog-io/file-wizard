@@ -11,6 +11,7 @@ import jfxtras.styles.jmetro.Style;
 import java.util.Optional;
 import java.util.Properties;
 
+
 public class CheckUpdateDialog {
 
     private final Dialog<Boolean> dialog = new Dialog<>();

@@ -7,6 +7,10 @@ import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
 
 import java.io.IOException;
 
+/**
+ * Retrieve Copyright attribute
+ * attribute: {copyright}
+ */
 public class Copyright implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException, AttributeNotFoundException {

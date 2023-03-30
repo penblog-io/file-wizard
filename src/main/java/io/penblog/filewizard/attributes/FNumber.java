@@ -7,6 +7,10 @@ import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
 
 import java.io.IOException;
 
+/**
+ * Retrieve F-number value from a media file
+ * attribute: {fNumber}
+ */
 public class FNumber implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException, AttributeNotFoundException {

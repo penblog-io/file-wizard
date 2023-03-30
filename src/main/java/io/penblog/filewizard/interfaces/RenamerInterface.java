@@ -8,6 +8,9 @@ import io.penblog.filewizard.exceptions.MissingOptionException;
 
 import java.util.List;
 
+/**
+ * New rename method must implement this RenamerInterface
+ */
 public interface RenamerInterface {
     String rename(Item item, OptionService optionService, List<Attribute> attributes)
             throws MissingOptionException, SameFilenameException;

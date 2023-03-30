@@ -11,6 +11,9 @@ import io.penblog.filewizard.enums.RenameMethod;
 import io.penblog.filewizard.services.ServiceContainer;
 import io.penblog.filewizard.states.RenameState;
 
+/**
+ * UpperCase class controller manages "UpperCase" option on the UI
+ */
 public class UpperCase {
 
     @FXML

@@ -16,6 +16,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * This Attribute Controller class helps load pre-defined attribute list to Attribute List FXML component, users can
+ * select pre-defined attributes from json/attributes.json file. More pre-defined can be added to the file as well.
+ */
 public class Attribute {
 
     private static final String JSON_ATTRIBUTE_LIST = "json/attributes.json";

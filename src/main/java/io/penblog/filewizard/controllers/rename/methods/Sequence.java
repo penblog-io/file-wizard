@@ -9,6 +9,9 @@ import io.penblog.filewizard.enums.RenameMethod;
 import io.penblog.filewizard.services.ServiceContainer;
 import io.penblog.filewizard.states.RenameState;
 
+/**
+ * Sequence class controller manages "Sequence" option on the UI
+ */
 public class Sequence {
 
     @FXML

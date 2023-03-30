@@ -19,6 +19,10 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 
+/**
+ * Info controller class responsible for Info FXML component, it displays general information as well as
+ * specific info based on type of file.
+ */
 public class Info {
 
     // define property format

@@ -7,6 +7,10 @@ import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
 
 import java.io.IOException;
 
+/**
+ * Retrieve focal length number from a media file (i.e: 18 mm, 70 mm etc.)
+ * attribute: {focalLength}
+ */
 public class FocalLength implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException, AttributeNotFoundException {

@@ -6,7 +6,6 @@ import io.penblog.filewizard.exceptions.AttributeNotFoundException;
 import io.penblog.filewizard.exceptions.IllegalAttributeValueException;
 import io.penblog.filewizard.helpers.EnumHelper;
 import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,11 +20,19 @@ public class AttributeService {
     private final Map<io.penblog.filewizard.enums.Attribute, AttributeGeneratorInterface>
             attributeGenerators = new HashMap<>();
 
+    /**
+     * New Attribute must be registered before they can be recognized and used.
+     */
     public void registerAttributeGenerator(io.penblog.filewizard.enums.Attribute attribute,
                                            AttributeGeneratorInterface attributeGenerator) {
         attributeGenerators.put(attribute, attributeGenerator);
     }
 
+    /**
+     * Convert a list of attributes, then get the attribute values from the provided item, and replace
+     * the attribute string (enclose in curly bracket {}) with the real values.
+     * Unrecognized attributes will be replaced with empty strings
+     */
     public String convert(String name, List<Attribute> attributes, Item item) {
         String newName = name;
         for (Attribute attr : attributes) {
@@ -58,7 +65,9 @@ public class AttributeService {
         return newName;
     }
 
-
+    /**
+     * Parse attribute list from the string name
+     */
     public List<Attribute> getAttributes(String name) {
         if (name == null) return new ArrayList<>();
         return Pattern.compile("(?<!\\\\)\\{(.*?)(?<!\\\\)}")

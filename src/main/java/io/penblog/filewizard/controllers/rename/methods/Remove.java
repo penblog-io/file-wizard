@@ -11,6 +11,9 @@ import io.penblog.filewizard.services.RenamerService;
 import io.penblog.filewizard.services.ServiceContainer;
 import io.penblog.filewizard.states.RenameState;
 
+/**
+ * Remove class controller manages "Remove" option on the UI
+ */
 public class Remove {
 
     @FXML

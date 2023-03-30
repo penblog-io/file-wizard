@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import io.penblog.filewizard.enums.MoveMethod;
 
+/**
+ * NewName controller helps control of MoveController in managing NewName method
+ */
 public class NewName {
 
     @FXML
@@ -59,6 +62,9 @@ public class NewName {
         });
     }
 
+    /**
+     * Preview method displays destination folders for files in the table where they will be moved to.
+     */
     private void preview(String value) {
         moverService.setOption(Option.MOVE_NEW_NAME_TEXT, value);
         moverService.preview(MoveMethod.NEW_NAME);

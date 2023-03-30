@@ -10,6 +10,9 @@ import io.penblog.filewizard.enums.RenameMethod;
 import io.penblog.filewizard.services.ServiceContainer;
 import io.penblog.filewizard.states.RenameState;
 
+/**
+ * Prepend class controller manages "Prepend" option on the UI
+ */
 public class Prepend {
 
     @FXML

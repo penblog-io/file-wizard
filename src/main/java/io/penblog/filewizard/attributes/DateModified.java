@@ -6,6 +6,10 @@ import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
 
 import java.io.IOException;
 
+/**
+ * Retrieve last modified date of a file
+ * attribute: {dateModified:format}
+ */
 public class DateModified implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException {

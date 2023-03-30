@@ -7,6 +7,11 @@ import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
 
 import java.io.IOException;
 
+
+/**
+ * Retrieve Aperture Value from a file if available
+ * attribute: {apertureValue}
+ */
 public class ApertureValue implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException, AttributeNotFoundException {

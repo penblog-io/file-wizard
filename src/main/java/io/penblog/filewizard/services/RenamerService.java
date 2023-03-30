@@ -24,8 +24,16 @@ import java.util.Map;
 
 public class RenamerService {
 
+    /**
+     * When generating new file names, some of them may result in the same name, so this variable keep track
+     * of duplicate new file name. Duplicate file names won't be able to rename
+     */
     private final Map<String, List<String>> duplicate = new HashMap<>();
     private final ItemService itemService = new ItemService();
+
+    /**
+     * List of available renamers, new movers can be registered in ServiceContainer
+     */
     private final Map<RenameMethod, RenamerInterface> renamers = new HashMap<>();
     private final OptionService optionService;
     private final AttributeService attributeService;
@@ -52,6 +60,7 @@ public class RenamerService {
 
                     for (Item item : itemService.getItems()) {
 
+                        // check if file exists, a file and can be moved or deleted
                         if (!item.getFile().exists()) {
                             item.setError(true, "(File is not found.)");
                             continue;
@@ -67,7 +76,8 @@ public class RenamerService {
                             if (!duplicate.containsKey(key)) {
                                 duplicate.put(key, new ArrayList<>());
                             }
-
+                            // add new file name to duplicate hash map, if one absolute path has two or more
+                            // entry, their new names are duplicate
                             duplicate.get(key).add(item.getFile().getAbsolutePath());
 
                         } catch (SameFilenameException e) {
@@ -77,9 +87,7 @@ public class RenamerService {
                         }
                     }
 
-            /*
-              check duplicate file names
-             */
+                    // set error flag if one absolute path has two entries.
                     for (Map.Entry<String, List<String>> entry : duplicate.entrySet()) {
                         if (entry.getValue().size() > 1) {
                             for (String key : entry.getValue()) {
@@ -102,6 +110,9 @@ public class RenamerService {
         itemService.put(files.stream().map(Item::new).toList());
     }
 
+    /**
+     * Rename files to the new names based on the selected renaming method.
+     */
     public void rename() {
         new Thread(new Task<Void>() {
             @Override

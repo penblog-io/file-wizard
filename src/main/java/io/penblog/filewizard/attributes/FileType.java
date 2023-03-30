@@ -8,6 +8,8 @@ import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
 import java.io.IOException;
 
 /**
+ * Retrieve file type based on mime type, currently, it only support media type
+ * attribute: {fileType}
  * TODO: File type is currently support a limited number of mime types defined in json/mime-types.json
  *       more will be added in the future
  */

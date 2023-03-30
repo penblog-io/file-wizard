@@ -8,6 +8,9 @@ import io.penblog.filewizard.exceptions.SameFilenameException;
 
 import java.util.List;
 
+/**
+ * New mover method must implement this MoverInterface
+ */
 public interface MoverInterface {
     String move(Item item, OptionService optionService, List<Attribute> attributes)
             throws MissingOptionException, SameFilenameException;

@@ -6,6 +6,10 @@ import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
 
 import java.io.IOException;
 
+/**
+ * Retrieve a mime type of file, currently, this is very limited to Java default method probeContentType
+ * attribute: {mimeType}
+ */
 public class MimeType implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException {

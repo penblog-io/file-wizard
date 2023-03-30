@@ -7,6 +7,10 @@ import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
 
 import java.io.IOException;
 
+/**
+ * Retrieve Camera Model from a media file (i.e: EOS-1D X Mark III, Canon EOS M50 etc.)
+ * attribute: {cameraModel}
+ */
 public class CameraModel implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException, AttributeNotFoundException {

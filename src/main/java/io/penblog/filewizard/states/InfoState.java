@@ -6,6 +6,10 @@ import io.penblog.filewizard.interfaces.StateInterface;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+
+/**
+ * InfoState class manages states for Info Widget
+ */
 public class InfoState implements StateInterface {
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
@@ -21,6 +25,9 @@ public class InfoState implements StateInterface {
         return infoState;
     }
 
+    /**
+     * when setSelectedItem is called, it fires "itemSelected" event.
+     */
     public void setSelectedItem(Item selectedItem) {
         Item oldValue = this.item;
         this.item = selectedItem;

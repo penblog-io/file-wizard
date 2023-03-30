@@ -22,6 +22,9 @@ import io.penblog.filewizard.states.MoveState;
 import java.io.File;
 import java.util.List;
 
+/**
+ * MoveController class manages Move UI tab
+ */
 public class MoveController {
 
     @FXML
@@ -53,19 +56,29 @@ public class MoveController {
         rdoCurrent.setSelected(true);
     }
 
-
+    /**
+     * On remove button click, remove selected items from item list in ItemService
+     * it will also remove from the table view since their values are bind.
+     */
     @FXML
     public void onRemoveClick() {
         moverService.removeItems(tbMove.getSelectionModel().getSelectedItems());
         tbMove.refresh();
     }
 
+    /**
+     * On clear button click, remove all items from the ItemService
+     * it will also remove from the table view since their values are bind.
+     */
     @FXML
     public void onClearClick() {
         moverService.clearItems();
         tbMove.refresh();
     }
 
+    /**
+     * On move button click, move all files to each respective folders
+     */
     @FXML
     public void onMoveClick() {
         int success = 0;
@@ -84,12 +97,18 @@ public class MoveController {
         tbMove.refresh();
     }
 
+    /**
+     * On open button click, open a multi-select dialog box
+     */
     @FXML
     public void onOpenClick() {
         List<File> files = new FileDialog(settingService.setting().getLastOpenDirectory()).openMultipleSelect();
         if (files != null) setFiles(files);
     }
 
+    /**
+     * on files dragged on table view, instead using file dialog, users can drag and drop files to the table view
+     */
     @FXML
     public void onFilesDragDropped(DragEvent event) {
         Dragboard db = event.getDragboard();
@@ -104,7 +123,9 @@ public class MoveController {
         event.consume();
     }
 
-
+    /**
+     * Add selected/dragged files to ItemService, immediately trigger "preview" method.
+     */
     private void setFiles(List<File> files) {
         if (files.size() > 0) {
             moverService.setFiles(files);
@@ -115,10 +136,13 @@ public class MoveController {
         }
     }
 
+
     private void setupTableView() {
         TableAction.initialize(tbMove);
 
         tbMove.setItems(moverService.getItems());
+
+        // if item data is modified anywhere, try to refresh the table view to display the updated data
         moveState.addPropertyChangeListener(evt -> {
             if ("invalidateTableData".equals(evt.getPropertyName())) {
                 tbMove.refresh();
@@ -137,6 +161,8 @@ public class MoveController {
                 return param.getValue();
             }
         });
+
+        // highlight table cell based on their status, red if there is an error
         colNewFolderName.setCellFactory(param -> new TableCell<>() {
             @Override
             protected void updateItem(Item item, boolean empty) {
@@ -177,7 +203,10 @@ public class MoveController {
         }
     }
 
-
+    /**
+     * on "Current Folder" radio button clicked, sub-folders will be created inside files' current folder,
+     * then will be moved to those sub-folders
+     */
     @FXML
     public void onCurrentRadioButtonClick() {
         moverService.setMoveTarget(null);
@@ -185,6 +214,10 @@ public class MoveController {
         preview();
     }
 
+    /**
+     * on "Specific Folder" radio button clicked, it will trigger a folder dialog box for the user to choose
+     * a destination folder, then sub-folders will be created in that specific folders
+     */
     @FXML
     public void onSpecificRadioButtonClick() {
         File moveTarget = new DirectoryDialog(settingService.setting().getLastOpenDirectory()).openSingleSelect();
@@ -201,6 +234,9 @@ public class MoveController {
         }
     }
 
+    /**
+     * Preview method displays destination folders for files in the table where they will be moved to.
+     */
     private void preview() {
         moverService.preview(moveState.getSelectedMethod());
         moveState.invalidateTableData();

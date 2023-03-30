@@ -15,7 +15,9 @@ public class ItemService {
     private final Map<String, Integer> indexes = new HashMap<>();
     private final ObservableList<Item> items = FXCollections.observableArrayList();
 
-
+    /**
+     * Put items in the list
+     */
     public void put(List<Item> items) {
         for (Item item : items) {
             if (indexes.get(item.getAbsolutePath()) == null) {
@@ -26,6 +28,9 @@ public class ItemService {
         sort();
     }
 
+    /**
+     * Remove items from the list
+     */
     public void remove(List<Item> items) {
         List<Integer> itemIndexes = new ArrayList<>(items.stream().map(Item::getAbsolutePath).toList()
                 .stream().map(indexes::get).toList());
@@ -34,6 +39,9 @@ public class ItemService {
         reIndexes();
     }
 
+    /**
+     * Re-indexing to make sure that "indexes" and "items" are in sync
+     */
     public void reIndexes() {
         indexes.clear();
         for (int i = 0; i < items.size(); i++) {

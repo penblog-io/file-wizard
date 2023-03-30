@@ -2,9 +2,12 @@ package io.penblog.filewizard.components;
 
 import io.penblog.filewizard.helpers.SystemUtils;
 import javafx.beans.property.SimpleStringProperty;
-
 import java.io.File;
 
+
+/**
+ * Item class is wrapper of a file object with extra properties that help bind value to JavaFX UI.
+ */
 public class Item {
 
     public Item(File file) {
@@ -17,9 +20,12 @@ public class Item {
     public static final String TYPE_FILE = "File";
     public static final String TYPE_DIRECTORY = "Directory";
 
+    @SuppressWarnings("UnusedAssignment")
     private SimpleStringProperty type = new SimpleStringProperty();
+    @SuppressWarnings("UnusedAssignment")
     private SimpleStringProperty originalFilename = new SimpleStringProperty();
     private SimpleStringProperty newFilename = new SimpleStringProperty();
+    @SuppressWarnings({"UnusedAssignment", "unused"})
     private SimpleStringProperty absolutePath = new SimpleStringProperty();
     private final SimpleStringProperty destFolderName = new SimpleStringProperty();
     private File file;

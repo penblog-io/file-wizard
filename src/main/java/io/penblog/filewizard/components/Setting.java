@@ -4,6 +4,9 @@ import io.penblog.filewizard.helpers.SystemUtils;
 
 import java.io.*;
 
+/**
+ * Setting class, after the application loaded, the setting file will also be loaded and store in Setting object.
+ */
 public class Setting {
     public static final String LAST_OPEN_LOCATION = "last_open_location";
     public static final String NOTIFY_AVAILABLE_UPDATE = "notify_available_update";
@@ -30,6 +33,9 @@ public class Setting {
     }
 
 
+    /**
+     * TODO: implement Dark Theme
+     */
     public void setThemeMode(String mode) {
         themeMode = mode;
     }

@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import io.penblog.filewizard.enums.MoveMethod;
 
+/**
+ * NewName controller helps control of MoveController in managing Sequence method
+ */
 public class Sequence {
 
     @FXML
@@ -60,6 +63,9 @@ public class Sequence {
         txtLimit.textProperty().addListener((observable, oldValue, newValue) -> preview());
     }
 
+    /**
+     * When users chose sequence by "number", immediately set default starting number and call preview method
+     */
     @FXML
     public void onTypeNumberClick() {
         type = "number";
@@ -67,6 +73,9 @@ public class Sequence {
         preview();
     }
 
+    /**
+     * When users chose sequence by "letter", immediately set default starting letter and call preview method
+     */
     @FXML
     public void onTypeLetterClick() {
         type = "letter";
@@ -75,6 +84,9 @@ public class Sequence {
     }
 
 
+    /**
+     * Preview method displays destination folders for files in the table where they will be moved to.
+     */
     private void preview() {
         String attribute = "";
         if (type != null) {

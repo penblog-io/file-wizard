@@ -6,6 +6,10 @@ import io.penblog.filewizard.interfaces.AttributeGeneratorInterface;
 
 import java.io.IOException;
 
+/**
+ * Retrieve creation date of a file
+ * attribute: {dateCreated:format}
+ */
 public class DateCreated implements AttributeGeneratorInterface {
 
     @Override
