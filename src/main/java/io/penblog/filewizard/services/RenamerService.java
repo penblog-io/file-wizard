@@ -9,8 +9,6 @@ import io.penblog.filewizard.enums.options.Option;
 import io.penblog.filewizard.exceptions.MissingOptionException;
 import io.penblog.filewizard.exceptions.SameFilenameException;
 import io.penblog.filewizard.helpers.SystemUtils;
-import javafx.concurrent.Task;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -48,57 +46,53 @@ public class RenamerService {
     }
 
     public void preview(RenameMethod method) {
-        new Thread(new Task<Void>() {
-            @Override
-            protected Void call() {
-                RenamerInterface renamer = renamers.get(method);
-                duplicate.clear();
 
-                if (renamer != null) {
+        RenamerInterface renamer = renamers.get(method);
+        duplicate.clear();
 
-                    List<Attribute> attributes = attributeService.getAttributes(renamer.optionToString(optionService));
+        if (renamer != null) {
 
-                    for (Item item : itemService.getItems()) {
+            List<Attribute> attributes = attributeService.getAttributes(renamer.optionToString(optionService));
 
-                        // check if file exists, a file and can be moved or deleted
-                        if (!item.getFile().exists()) {
-                            item.setError(true, "(File is not found.)");
-                            continue;
-                        }
+            for (Item item : itemService.getItems()) {
 
-                        try {
-                            String newFilename = renamer.rename(item, optionService, attributes);
-                            item.setNewFilename(newFilename);
-                            item.setError(false);
+                // check if file exists, a file and can be moved or deleted
+                if (!item.getFile().exists()) {
+                    item.setError(true, "(File is not found.)");
+                    continue;
+                }
 
-                            String key = item.getFile().getParent() + "/" + newFilename;
-                            if (SystemUtils.isWindows()) key = key.toLowerCase();
-                            if (!duplicate.containsKey(key)) {
-                                duplicate.put(key, new ArrayList<>());
-                            }
-                            // add new file name to duplicate hash map, if one absolute path has two or more
-                            // entry, their new names are duplicate
-                            duplicate.get(key).add(item.getFile().getAbsolutePath());
+                try {
+                    String newFilename = renamer.rename(item, optionService, attributes);
+                    item.setNewFilename(newFilename);
+                    item.setError(false);
 
-                        } catch (SameFilenameException e) {
-                            item.setError(true, "(Filename did not change, skip)");
-                        } catch (MissingOptionException e) {
-                            e.printStackTrace();
-                        }
+                    String key = item.getFile().getParent() + "/" + newFilename;
+                    if (SystemUtils.isWindows()) key = key.toLowerCase();
+                    if (!duplicate.containsKey(key)) {
+                        duplicate.put(key, new ArrayList<>());
                     }
 
-                    // set error flag if one absolute path has two entries.
-                    for (Map.Entry<String, List<String>> entry : duplicate.entrySet()) {
-                        if (entry.getValue().size() > 1) {
-                            for (String key : entry.getValue()) {
-                                itemService.get(key).setError(true, "(Duplicate filename, skip)");
-                            }
-                        }
+                    // add new file name to duplicate hash map, if one absolute path has two or more
+                    // entry, their new names are duplicate
+                    duplicate.get(key).add(item.getFile().getAbsolutePath());
+
+                } catch (SameFilenameException e) {
+                    item.setError(true, "(Filename did not change, skip)");
+                } catch (MissingOptionException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            // set error flag if one absolute path has two entries.
+            for (Map.Entry<String, List<String>> entry : duplicate.entrySet()) {
+                if (entry.getValue().size() > 1) {
+                    for (String key : entry.getValue()) {
+                        itemService.get(key).setError(true, "(Duplicate filename, skip)");
                     }
                 }
-                return null;
             }
-        }).start();
+        }
 
     }
 
@@ -114,29 +108,24 @@ public class RenamerService {
      * Rename files to the new names based on the selected renaming method.
      */
     public void rename() {
-        new Thread(new Task<Void>() {
-            @Override
-            protected Void call() {
-                for (Item item : itemService.getItems()) {
 
-                    // only rename if not error
-                    if (item.isError()) continue;
+        for (Item item : itemService.getItems()) {
 
-                    Path p = Paths.get(item.getFile().toURI());
-                    try {
-                        Path newPath = p.resolveSibling(item.getNewFilename());
-                        Files.move(p, newPath);
-                        item.setFile(new File(newPath.toUri()));
-                        item.setNewFilename("");
+            // only rename if not error
+            if (item.isError()) continue;
 
-                    } catch (IOException e) {
-                        item.setError(true, "Cannot rename file.");
-                        e.printStackTrace();
-                    }
-                }
-                return null;
+            Path p = Paths.get(item.getFile().toURI());
+            try {
+                Path newPath = p.resolveSibling(item.getNewFilename());
+                Files.move(p, newPath);
+                item.setFile(new File(newPath.toUri()));
+                item.setNewFilename("");
+
+            } catch (IOException e) {
+                item.setError(true, "Cannot rename file.");
+                e.printStackTrace();
             }
-        });
+        }
     }
 
     public ObservableList<Item> getItems() {

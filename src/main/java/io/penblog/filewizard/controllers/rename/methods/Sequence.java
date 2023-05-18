@@ -2,6 +2,7 @@ package io.penblog.filewizard.controllers.rename.methods;
 
 import io.penblog.filewizard.enums.options.Option;
 import io.penblog.filewizard.services.RenamerService;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -60,27 +61,31 @@ public class Sequence {
     public void onTypeNumberClick() {
         type = "number";
         txtStart.setText("1");
-        preview();
     }
 
     @FXML
     public void onTypeLetterClick() {
         type = "letter";
         txtStart.setText("A");
-        preview();
     }
 
     private void preview() {
-        String attribute = "";
-        if (type != null) {
-            attribute = "{sequence:" + type + "," + txtStart.getText() + "," + txtInterval.getText() + ",1";
-            if (!txtMask.getText().isEmpty()) attribute += "," + txtMask.getText();
-            attribute += "}";
-        }
+        new Thread(new Task<Void>() {
+            @Override
+            protected Void call() {
+                String attribute = "";
+                if (type != null) {
+                    attribute = "{sequence:" + type + "," + txtStart.getText() + "," + txtInterval.getText() + ",1";
+                    if (!txtMask.getText().isEmpty()) attribute += "," + txtMask.getText();
+                    attribute += "}";
+                }
 
-        renamerService.setOption(Option.RENAME_SEQUENCE_TEXT, attribute);
-        renamerService.preview(RenameMethod.SEQUENCE);
-        renameState.invalidateTableData();
+                renamerService.setOption(Option.RENAME_SEQUENCE_TEXT, attribute);
+                renamerService.preview(RenameMethod.SEQUENCE);
+                renameState.invalidateTableData();
+                return null;
+            }
+        }).start();
     }
 
 }

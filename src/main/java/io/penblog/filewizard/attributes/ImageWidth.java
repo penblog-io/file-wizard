@@ -14,7 +14,7 @@ import java.io.IOException;
 public class ImageWidth implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException, AttributeNotFoundException {
-        return Files.getImageWidth(item.getFile()) + "";
+        return String.valueOf(Files.getImageWidth(item.getFile()));
     }
 
     @Override

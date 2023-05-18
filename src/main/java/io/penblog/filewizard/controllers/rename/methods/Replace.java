@@ -3,6 +3,7 @@ package io.penblog.filewizard.controllers.rename.methods;
 import io.penblog.filewizard.enums.options.Option;
 import io.penblog.filewizard.helpers.Files;
 import io.penblog.filewizard.services.RenamerService;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -69,17 +70,22 @@ public class Replace {
             if ("selectedAttributeFormat".equals(evt.getPropertyName())
                     && renameState.getSelectedMethod() == RenameMethod.REPLACE) {
                 txtReplace.setText(evt.getNewValue() == null ? "" : evt.getNewValue().toString());
-                preview(txtFind.getText(), txtReplace.getText());
             }
         });
     }
 
 
     private void preview(String find, String replace) {
-        renamerService.setOption(Option.RENAME_REPLACE_SEARCH, find);
-        renamerService.setOption(Option.RENAME_REPLACE_TEXT, replace);
-        renamerService.preview(RenameMethod.REPLACE);
-        renameState.invalidateTableData();
+        new Thread(new Task<Void>() {
+            @Override
+            protected Void call() {
+                renamerService.setOption(Option.RENAME_REPLACE_SEARCH, find);
+                renamerService.setOption(Option.RENAME_REPLACE_TEXT, replace);
+                renamerService.preview(RenameMethod.REPLACE);
+                renameState.invalidateTableData();
+                return null;
+            }
+        }).start();
     }
 
 

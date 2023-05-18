@@ -4,6 +4,7 @@ import io.penblog.filewizard.enums.options.Option;
 import io.penblog.filewizard.services.MoverService;
 import io.penblog.filewizard.services.ServiceContainer;
 import io.penblog.filewizard.states.MoveState;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -70,7 +71,6 @@ public class Sequence {
     public void onTypeNumberClick() {
         type = "number";
         txtStart.setText("1");
-        preview();
     }
 
     /**
@@ -80,7 +80,6 @@ public class Sequence {
     public void onTypeLetterClick() {
         type = "letter";
         txtStart.setText("A");
-        preview();
     }
 
 
@@ -88,17 +87,23 @@ public class Sequence {
      * Preview method displays destination folders for files in the table where they will be moved to.
      */
     private void preview() {
-        String attribute = "";
-        if (type != null) {
-            attribute = "{sequence:" + type + "," + txtStart.getText() + "," + txtInterval.getText();
-            attribute += "," + (txtLimit.getText().isEmpty() ? "1" : txtLimit.getText());
+        new Thread(new Task<Void>() {
+            @Override
+            protected Void call() {
+                String attribute = "";
+                if (type != null) {
+                    attribute = "{sequence:" + type + "," + txtStart.getText() + "," + txtInterval.getText();
+                    attribute += "," + (txtLimit.getText().isEmpty() ? "1" : txtLimit.getText());
 
-            if (!txtMask.getText().isEmpty()) attribute += "," + txtMask.getText();
-            attribute += "}";
-        }
+                    if (!txtMask.getText().isEmpty()) attribute += "," + txtMask.getText();
+                    attribute += "}";
+                }
 
-        moverService.setOption(Option.MOVE_SEQUENCE_TEXT, attribute);
-        moverService.preview(MoveMethod.SEQUENCE);
-        moveState.invalidateTableData();
+                moverService.setOption(Option.MOVE_SEQUENCE_TEXT, attribute);
+                moverService.preview(MoveMethod.SEQUENCE);
+                moveState.invalidateTableData();
+                return null;
+            }
+        }).start();
     }
 }

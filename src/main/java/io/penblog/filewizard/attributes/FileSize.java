@@ -15,18 +15,17 @@ import java.util.List;
  */
 public class FileSize implements AttributeGeneratorInterface {
 
-    private static final List<String> unitList = new ArrayList<>(Arrays.asList("kb", "mb", "gb", "tb"));
+    private static final List<String> unitList = new ArrayList<>(Arrays.asList("byte", "kb", "mb", "gb", "tb"));
     @Override
     public String generate(Item item, String attributeValue) throws IOException {
         Long size = Files.getFileSize(item.getFile());
-
         switch (attributeValue.toLowerCase()) {
             case "kb" -> size = size / 1024;
             case "mb" -> size = size / 1024 / 1024;
             case "gb" -> size = size / 1024 / 1024 / 1024;
             case "tb" -> size = size / 1024 / 1024 / 1024 / 1024;
         }
-        return size + "";
+        return String.valueOf(size);
     }
 
     /**

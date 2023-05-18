@@ -14,7 +14,7 @@ import java.io.IOException;
 public class ImageHeight implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException, AttributeNotFoundException {
-        return Files.getImageHeight(item.getFile()) + "";
+        return String.valueOf(Files.getImageHeight(item.getFile()));
     }
 
     @Override

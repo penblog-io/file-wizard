@@ -3,6 +3,7 @@ package io.penblog.filewizard.controllers.rename.methods;
 import io.penblog.filewizard.enums.options.Option;
 import io.penblog.filewizard.enums.options.UpperCaseOption;
 import io.penblog.filewizard.services.RenamerService;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -47,17 +48,21 @@ public class UpperCase {
 
     private void setupAllCharactersRadioButton() {
         rdoAllCharacters.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            txtUpperCaseCharacters.setDisable(true);
-            renamerService.setOption(Option.RENAME_UPPERCASE_OPTION, UpperCaseOption.ALL_CHARACTERS);
-            preview();
+            if(newValue) {
+                txtUpperCaseCharacters.setDisable(true);
+                renamerService.setOption(Option.RENAME_UPPERCASE_OPTION, UpperCaseOption.ALL_CHARACTERS);
+                preview();
+            }
         });
     }
 
     private void setupSpecificCharactersRadioButton() {
         rdoSpecificCharacters.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            txtUpperCaseCharacters.setDisable(false);
-            renamerService.setOption(Option.RENAME_UPPERCASE_OPTION, UpperCaseOption.SPECIFIC_CHARACTERS);
-            preview();
+            if(newValue) {
+                txtUpperCaseCharacters.setDisable(false);
+                renamerService.setOption(Option.RENAME_UPPERCASE_OPTION, UpperCaseOption.SPECIFIC_CHARACTERS);
+                preview();
+            }
         });
     }
 
@@ -67,8 +72,14 @@ public class UpperCase {
     }
 
     private void preview() {
-        renamerService.setOption(Option.RENAME_UPPERCASE_SPECIFIC_CHARACTERS_TEXT, txtUpperCaseCharacters.getText());
-        renamerService.preview(RenameMethod.UPPERCASE);
-        renameState.invalidateTableData();
+        new Thread(new Task<Void>() {
+            @Override
+            protected Void call() {
+                renamerService.setOption(Option.RENAME_UPPERCASE_SPECIFIC_CHARACTERS_TEXT, txtUpperCaseCharacters.getText());
+                renamerService.preview(RenameMethod.UPPERCASE);
+                renameState.invalidateTableData();
+                return null;
+            }
+        }).start();
     }
 }

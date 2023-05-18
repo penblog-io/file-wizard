@@ -45,8 +45,7 @@ public class TableAction {
     }
 
     public static void showInfoOnItemSelected(TableView<Item> tableView) {
-        tableView.getSelectionModel().selectedItemProperty().addListener(((observable, oldItem, newItem) -> {
-            InfoState.getInstance().setSelectedItem(newItem);
-        }));
+        tableView.getSelectionModel().selectedItemProperty().addListener(((observable, oldItem, newItem) ->
+                InfoState.getInstance().setSelectedItem(newItem)));
     }
 }

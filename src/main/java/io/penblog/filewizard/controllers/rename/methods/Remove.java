@@ -1,6 +1,7 @@
 package io.penblog.filewizard.controllers.rename.methods;
 
 import io.penblog.filewizard.helpers.Files;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -72,10 +73,16 @@ public class Remove {
     }
 
     private void preview(String remove) {
-        renamerService.setOption(Option.RENAME_REMOVE_TEXT, remove);
-        renamerService.setOption(Option.RENAME_REMOVE_REGEX, isRegex);
-        renamerService.setOption(Option.RENAME_REMOVE_CASE_INSENSITIVE, isCaseInsensitive);
-        renamerService.preview(RenameMethod.REMOVE);
-        renameState.invalidateTableData();
+        new Thread(new Task<Void>() {
+            @Override
+            protected Void call() {
+                renamerService.setOption(Option.RENAME_REMOVE_TEXT, remove);
+                renamerService.setOption(Option.RENAME_REMOVE_REGEX, isRegex);
+                renamerService.setOption(Option.RENAME_REMOVE_CASE_INSENSITIVE, isCaseInsensitive);
+                renamerService.preview(RenameMethod.REMOVE);
+                renameState.invalidateTableData();
+                return null;
+            }
+        }).start();
     }
 }

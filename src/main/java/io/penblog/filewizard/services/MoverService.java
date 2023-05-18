@@ -9,7 +9,6 @@ import io.penblog.filewizard.exceptions.MissingOptionException;
 import io.penblog.filewizard.exceptions.SameFilenameException;
 import io.penblog.filewizard.helpers.SystemUtils;
 import io.penblog.filewizard.interfaces.MoverInterface;
-import javafx.concurrent.Task;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -52,65 +51,57 @@ public class MoverService {
 
     public void preview(MoveMethod method) {
 
-        new Thread(new Task<Void>() {
-            @Override
-            protected Void call() {
-                MoverInterface mover = movers.get(method);
-                duplicate.clear();
+        MoverInterface mover = movers.get(method);
+        duplicate.clear();
 
-                if (mover != null) {
+        if (mover != null) {
 
-                    List<Attribute> attributes = attributeService.getAttributes(mover.optionToString(optionService));
-                    for (Item item : itemService.getItems()) {
+            List<Attribute> attributes = attributeService.getAttributes(mover.optionToString(optionService));
+            for (Item item : itemService.getItems()) {
 
-                        // check if file exists, a file and can be moved or deleted
-                        if (!item.getFile().exists()) {
-                            item.setError(true, "(File is not found.)");
-                            continue;
-                        }
+                // check if file exists, a file and can be moved or deleted
+                if (!item.getFile().exists()) {
+                    item.setError(true, "(File is not found.)");
+                    continue;
+                }
 
-                        try {
-                            String newFolderName = mover.move(item, optionService, attributes);
-                            String parentFolderPath = moveTarget == null ?
-                                    item.getFile().getParent() : moveTarget.getAbsolutePath();
+                try {
+                    String newFolderName = mover.move(item, optionService, attributes);
+                    String parentFolderPath = moveTarget == null ?
+                            item.getFile().getParent() : moveTarget.getAbsolutePath();
 
-                            String destFolderName = parentFolderPath + (SystemUtils.isWindows() ? "\\" : "/") +
-                                    newFolderName;
+                    String destFolderName = parentFolderPath + (SystemUtils.isWindows() ? "\\" : "/") + newFolderName;
 
-                            item.setDestFolderName(destFolderName);
-                            item.setError(false);
+                    item.setDestFolderName(destFolderName);
+                    item.setError(false);
 
-                            String key = destFolderName + (SystemUtils.isWindows() ? "\\" : "/") +
-                                    item.getOriginalFilename();
-                            if (SystemUtils.isWindows()) key = key.toLowerCase();
+                    String key = destFolderName + (SystemUtils.isWindows() ? "\\" : "/") + item.getOriginalFilename();
+                    if (SystemUtils.isWindows()) key = key.toLowerCase();
 
-
-                            if (!duplicate.containsKey(key)) {
-                                duplicate.put(key, new ArrayList<>());
-                            }
-                            // add new file name to duplicate hash map, if one absolute path has two or more
-                            // entry, their new names are duplicate
-                            duplicate.get(key).add(item.getFile().getAbsolutePath());
-
-                        } catch (SameFilenameException e) {
-                            item.setError(true, "(Filename did not change, skip)");
-                        } catch (MissingOptionException e) {
-                            e.printStackTrace();
-                        }
+                    if (!duplicate.containsKey(key)) {
+                        duplicate.put(key, new ArrayList<>());
                     }
 
-                    // set error flag if one absolute path has two entries.
-                    for (Map.Entry<String, List<String>> entry : duplicate.entrySet()) {
-                        if (entry.getValue().size() > 1) {
-                            for (String key : entry.getValue()) {
-                                itemService.get(key).setError(true, "(Duplicate filename, skip)");
-                            }
-                        }
+                    // add new file name to duplicate hash map, if one absolute path has two or more
+                    // entry, their new names are duplicate
+                    duplicate.get(key).add(item.getFile().getAbsolutePath());
+
+                } catch (SameFilenameException e) {
+                    item.setError(true, "(Filename did not change, skip)");
+                } catch (MissingOptionException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            // set error flag if one absolute path has two entries.
+            for (Map.Entry<String, List<String>> entry : duplicate.entrySet()) {
+                if (entry.getValue().size() > 1) {
+                    for (String key : entry.getValue()) {
+                        itemService.get(key).setError(true, "(Duplicate filename, skip)");
                     }
                 }
-                return null;
             }
-        });
+        }
     }
 
     public void setOption(Option option, Object value) {
@@ -125,34 +116,29 @@ public class MoverService {
      * Move files to their respective sub-folders
      */
     public void move() {
-        new Thread(new Task<Void>() {
-            @Override
-            protected Void call() {
-                for (Item item : itemService.getItems()) {
-                    // only rename if not error
-                    if (item.isError()) continue;
 
-                    File dirFile = new File(item.getDestFolderName());
-                    boolean dirExists;
-                    if (!dirFile.exists()) {
-                        dirExists = dirFile.mkdirs();
-                    } else dirExists = true;
+        for (Item item : itemService.getItems()) {
+            // only rename if not error
+            if (item.isError()) continue;
 
-                    if (dirExists) {
-                        Path p = Paths.get(item.getFile().toURI());
-                        try {
-                            Path newPath = Paths.get(item.getDestFullFilename());
-                            Files.move(p, newPath);
-                            item.setFile(new File(newPath.toUri()));
-                        } catch (IOException e) {
-                            item.setError(true, "Cannot move file.");
-                            e.printStackTrace();
-                        }
-                    }
+            File dirFile = new File(item.getDestFolderName());
+            boolean dirExists;
+            if (!dirFile.exists()) {
+                dirExists = dirFile.mkdirs();
+            } else dirExists = true;
+
+            if (dirExists) {
+                Path p = Paths.get(item.getFile().toURI());
+                try {
+                    Path newPath = Paths.get(item.getDestFullFilename());
+                    Files.move(p, newPath);
+                    item.setFile(new File(newPath.toUri()));
+                } catch (IOException e) {
+                    item.setError(true, "Cannot move file.");
+                    e.printStackTrace();
                 }
-                return null;
             }
-        });
+        }
     }
 
     public ObservableList<Item> getItems() {

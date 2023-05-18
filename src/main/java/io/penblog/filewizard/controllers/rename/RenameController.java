@@ -11,13 +11,13 @@ import io.penblog.filewizard.services.SettingService;
 import io.penblog.filewizard.states.RenameState;
 import javafx.beans.value.ObservableValueBase;
 import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
-
 import java.io.File;
 import java.util.List;
 
@@ -71,23 +71,33 @@ public class RenameController {
      */
     @FXML
     public void onRenameClick() {
-        int success = 0;
-        int skip = 0;
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() {
+                // display a summary to user
+                renamerService.rename();
+                return null;
+            }
+        };
+        task.setOnSucceeded(event -> {
+            int success = 0;
+            int skip = 0;
 
-        // check if there is an error when rename files, count success and error
-        for (Item item : renamerService.getItems()) {
-            if (item.isError()) skip++;
-            else success++;
-        }
+            // check if there is an error when rename files, count success and error
+            for (Item item : renamerService.getItems()) {
+                if (item.isError()) skip++;
+                else success++;
+            }
 
-        // display a summary to user
-        renamerService.rename();
-        InfoBox.getInstance().show("Status", "",
-                success + " item" + (success > 1 ? "s have" : " has") + " been renamed.\n" +
-                        skip + " item" + (skip > 1 ? "s have" : " has") + " been skipped.");
+            InfoBox.getInstance().show("Status", "",
+                    success + " item" + (success > 1 ? "s have" : " has") + " been renamed.\n" +
+                            skip + " item" + (skip > 1 ? "s have" : " has") + " been skipped.");
 
-        renamerService.clearNonErrorItems();
-        tbRename.refresh();
+            renamerService.clearNonErrorItems();
+            tbRename.refresh();
+        });
+
+        new Thread(task).start();
     }
 
     /**
@@ -120,13 +130,19 @@ public class RenameController {
      * Add selected/dragged files to ItemService, immediately trigger "preview" method.
      */
     private void setFiles(List<File> files) {
-        if (files.size() > 0) {
-            renamerService.setFiles(files);
-            settingService.setLastOpenDirectory(files.get(0).getParentFile());
-            settingService.write();
-            renamerService.preview(renameState.getSelectedMethod());
-            tbRename.refresh();
-        }
+        new Thread(new Task<Void>() {
+            @Override
+            protected Void call() {
+                if (files.size() > 0) {
+                    renamerService.setFiles(files);
+                    settingService.setLastOpenDirectory(files.get(0).getParentFile());
+                    settingService.write();
+                    renamerService.preview(renameState.getSelectedMethod());
+                    tbRename.refresh();
+                }
+                return null;
+            }
+        }).start();
     }
 
     private void setupTableView() {
@@ -189,4 +205,5 @@ public class RenameController {
         cboMethod.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 renameState.setSelectedMethod(newValue));
     }
+
 }

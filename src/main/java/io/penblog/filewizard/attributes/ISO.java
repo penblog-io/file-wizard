@@ -14,7 +14,7 @@ import java.io.IOException;
 public class ISO implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException, AttributeNotFoundException {
-        return Files.getISO(item.getFile()) + "";
+        return String.valueOf(Files.getISO(item.getFile()));
     }
 
     @Override

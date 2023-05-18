@@ -3,6 +3,7 @@ package io.penblog.filewizard.controllers.move;
 import io.penblog.filewizard.guis.dialog.actions.TableAction;
 import javafx.beans.value.ObservableValueBase;
 import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -81,20 +82,29 @@ public class MoveController {
      */
     @FXML
     public void onMoveClick() {
-        int success = 0;
-        int skip = 0;
-        for (Item item : moverService.getItems()) {
-            if (item.isError()) skip++;
-            else success++;
-        }
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() {
+                moverService.move();
+                return null;
+            }
+        };
+        task.setOnSucceeded(event -> {
+            int success = 0;
+            int skip = 0;
+            for (Item item : moverService.getItems()) {
+                if (item.isError()) skip++;
+                else success++;
+            }
+            InfoBox.getInstance().show("Status", "",
+                    success + " item" + (success > 1 ? "s have" : " has") + " been moved.\n" +
+                            skip + " item" + (skip > 1 ? "s have" : " has") + " been skipped.\n");
 
-        moverService.move();
-        InfoBox.getInstance().show("Status", "",
-                success + " item" + (success > 1 ? "s have" : " has") + " been moved.\n" +
-                        skip + " item" + (skip > 1 ? "s have" : " has") + " been skipped.\n");
+            moverService.clearNonErrorItems();
+            tbMove.refresh();
+        });
 
-        moverService.clearNonErrorItems();
-        tbMove.refresh();
+        new Thread(task).start();
     }
 
     /**
@@ -238,7 +248,13 @@ public class MoveController {
      * Preview method displays destination folders for files in the table where they will be moved to.
      */
     private void preview() {
-        moverService.preview(moveState.getSelectedMethod());
-        moveState.invalidateTableData();
+        new Thread(new Task<Void>() {
+            @Override
+            protected Void call() {
+                moverService.preview(moveState.getSelectedMethod());
+                moveState.invalidateTableData();
+                return null;
+            }
+        }).start();
     }
 }

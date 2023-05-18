@@ -92,7 +92,7 @@ public class Sequence implements AttributeGeneratorInterface {
 
         int sequenceInt = start + position;
         if (sequenceInt < 0) sequenceInt = 0;
-        String sequence = "" + sequenceInt;
+        String sequence = String.valueOf(sequenceInt);
         if (mask.length() > sequence.length()) {
             sequence = mask.substring(0, mask.length() - sequence.length()) + sequence;
         }

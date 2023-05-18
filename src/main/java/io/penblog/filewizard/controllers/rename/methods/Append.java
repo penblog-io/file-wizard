@@ -2,6 +2,7 @@ package io.penblog.filewizard.controllers.rename.methods;
 
 import io.penblog.filewizard.helpers.Files;
 import io.penblog.filewizard.services.RenamerService;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -57,14 +58,20 @@ public class Append {
             if ("selectedAttributeFormat".equals(evt.getPropertyName())
                     && renameState.getSelectedMethod() == RenameMethod.APPEND) {
                 txtAppend.setText(evt.getNewValue() == null ? "" : evt.getNewValue().toString());
-                preview(txtAppend.getText());
             }
         });
     }
 
     private void preview(String value) {
-        renamerService.setOption(Option.RENAME_APPEND_TEXT, value);
-        renamerService.preview(RenameMethod.APPEND);
-        renameState.invalidateTableData();
+        new Thread(new Task<Void>() {
+            @Override
+            protected Void call() {
+                renamerService.setOption(Option.RENAME_APPEND_TEXT, value);
+                renamerService.preview(RenameMethod.APPEND);
+                renameState.invalidateTableData();
+
+                return null;
+            }
+        }).start();
     }
 }

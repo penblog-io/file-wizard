@@ -13,7 +13,6 @@ import java.beans.PropertyChangeSupport;
 public class RenameState implements StateInterface {
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
-
     private static RenameState renameState;
     private RenameMethod selectedMethod;
     private Attribute selectedAttribute;
@@ -28,10 +27,6 @@ public class RenameState implements StateInterface {
         return renameState;
     }
 
-    public Attribute getSelectedAttribute() {
-        return selectedAttribute;
-    }
-
     /**
      * setSelectedAttribute fires "selectedAttribute" event when an attribute is selected.
      */
@@ -41,9 +36,6 @@ public class RenameState implements StateInterface {
         support.firePropertyChange("selectedAttribute", oldValue, this.selectedAttribute);
     }
 
-    public String getSelectedAttributeFormat() {
-        return selectedAttributeFormat;
-    }
 
     /**
      * setSelectedAttributeFormat fires "selectedAttributeFormat" event when an attribute format is selected.
@@ -81,4 +73,5 @@ public class RenameState implements StateInterface {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
     }
+
 }

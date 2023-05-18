@@ -5,6 +5,7 @@ import io.penblog.filewizard.helpers.Files;
 import io.penblog.filewizard.services.MoverService;
 import io.penblog.filewizard.services.ServiceContainer;
 import io.penblog.filewizard.states.MoveState;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -57,7 +58,6 @@ public class NewName {
             if ("selectedAttributeFormat".equals(evt.getPropertyName())
                     && moveState.getSelectedMethod() == MoveMethod.NEW_NAME) {
                 txtNewName.setText(evt.getNewValue() == null ? "" : evt.getNewValue().toString());
-                preview(txtNewName.getText());
             }
         });
     }
@@ -66,8 +66,14 @@ public class NewName {
      * Preview method displays destination folders for files in the table where they will be moved to.
      */
     private void preview(String value) {
-        moverService.setOption(Option.MOVE_NEW_NAME_TEXT, value);
-        moverService.preview(MoveMethod.NEW_NAME);
-        moveState.invalidateTableData();
+        new Thread(new Task<Void>() {
+            @Override
+            protected Void call() {
+                moverService.setOption(Option.MOVE_NEW_NAME_TEXT, value);
+                moverService.preview(MoveMethod.NEW_NAME);
+                moveState.invalidateTableData();
+                return null;
+            }
+        }).start();
     }
 }

@@ -1,4 +1,4 @@
-version=2.1.0
+version=2.1.1
 website=https://filewizard.app/
 checkUpdateUrl=https://filewizard.app/api/version
 downloadUrl=https://filewizard.app/download

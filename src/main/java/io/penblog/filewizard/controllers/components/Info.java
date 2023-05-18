@@ -26,7 +26,7 @@ import java.text.DecimalFormat;
 public class Info {
 
     // define property format
-    private static final String FILE_SIZE = "{fileSize}";
+    private static final String FILE_SIZE = "{fileSize:byte}";
     private static final String DATE_CREATED = "{dateCreated:yyyy-MM-dd hh:ss a}";
     private static final String DATE_MODIFIED = "{dateModified:yyyy-MM-dd hh:ss a}";
     private static final String DATE_ACCESSED = "{dateAccessed:yyyy-MM-dd hh:ss a}";

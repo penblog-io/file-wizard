@@ -9,6 +9,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
  */
 buildscript {
     dependencies {
+        classpath("org.beryx:badass-jlink-plugin:2.25.0")
         classpath("org.openjfx:javafx-plugin:0.0.13")
         classpath("org.javamodularity:moduleplugin:1.8.12")
     }
@@ -23,6 +24,7 @@ buildscript {
 apply(plugin = "java")
 apply(plugin = "org.javamodularity.moduleplugin")
 apply(plugin = "org.openjfx.javafxplugin")
+apply(plugin = "org.beryx.jlink")
 
 
 plugins {
@@ -31,6 +33,7 @@ plugins {
     // Apply the application plugin to add support for building a CLI application.
     application
     id("org.openjfx.javafxplugin") version "0.0.10"
+    id("org.beryx.jlink") version "2.24.4"
     id("org.javamodularity.moduleplugin") version "1.8.10"
 }
 
@@ -41,10 +44,11 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.0.1-jre")
-    implementation("com.drewnoakes:metadata-extractor:2.16.0")
+    implementation("com.drewnoakes:metadata-extractor:2.18.0")
     implementation("org.jfxtras:jmetro:11.6.14") {
         exclude("org.openjfx")
     }
@@ -53,11 +57,14 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     testImplementation("org.mockito:mockito-core:4.1.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+
 }
 
 
 tasks.compileTestJava {
+
     modularity.inferModulePath.set(false)
+
 }
 tasks.test {
     useJUnitPlatform()
@@ -75,4 +82,57 @@ application {
 javafx {
     version = "17.0.2"
     modules("javafx.controls", "javafx.fxml", "javafx.graphics", "javafx.web")
+}
+
+
+
+
+
+val appName = "File Wizard"
+val appVers = "2.1.1"
+val appDescription = "A powerful tool allows you rename or move your files automatically."
+val appLicenseFile = "${buildDir}/resources/main/LICENSE.md"
+val appLicenseType = "GPLv3"
+
+jlink {
+
+    launcher {
+        name = appName
+    }
+
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        jpackage {
+            installerOptions = listOf(
+                "--win-menu", "--win-shortcut", "--win-dir-chooser",
+                "--license-file", appLicenseFile
+            )
+            icon = "$buildDir/resources/main/images/logo.ico"
+            appVersion = appVers
+
+            description = appDescription
+        }
+    } else if (Os.isFamily(Os.FAMILY_MAC)) {
+        jpackage {
+            installerOptions = listOf(
+                "--license-file", appLicenseFile
+            )
+            icon = "$buildDir/resources/main/images/logo.icns"
+            appVersion = appVers
+            description = appDescription
+        }
+    } else {
+        jpackage {
+            installerOptions = listOf(
+                "--linux-shortcut",
+                "--license-file", appLicenseFile,
+                "--linux-rpm-license-type", appLicenseType
+            )
+            installerType = "deb"
+            icon = "$buildDir/resources/main/images/logo.png"
+            appVersion = appVers
+            description = appDescription
+            installerName = appName
+            resourceDir = file("$buildDir/resources/main")
+        }
+    }
 }
