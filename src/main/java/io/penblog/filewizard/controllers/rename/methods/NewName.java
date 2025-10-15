@@ -1,6 +1,7 @@
 package io.penblog.filewizard.controllers.rename.methods;
 
 import io.penblog.filewizard.enums.options.Option;
+import io.penblog.filewizard.helpers.Control;
 import io.penblog.filewizard.helpers.Files;
 import io.penblog.filewizard.services.RenamerService;
 import javafx.concurrent.Task;
@@ -57,7 +58,7 @@ public class NewName {
         renameState.addPropertyChangeListener(evt -> {
             if ("selectedAttributeFormat".equals(evt.getPropertyName())
                     && renameState.getSelectedMethod() == RenameMethod.NEW_NAME) {
-                txtNewName.setText(evt.getNewValue() == null ? "" : evt.getNewValue().toString());
+                Control.insertAtCaret(txtNewName, evt.getNewValue() == null ? "" : evt.getNewValue().toString());
             }
         });
     }

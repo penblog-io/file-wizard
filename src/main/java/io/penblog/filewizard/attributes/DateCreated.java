@@ -14,7 +14,9 @@ public class DateCreated implements AttributeGeneratorInterface {
 
     @Override
     public String generate(Item item, String attributeValue) throws IOException {
-        return Files.getDateCreated(item.getFile(), attributeValue);
+        return "timestamp".equals(attributeValue)
+                ? Files.getDateCreatedAsTimestamp(item.getFile())
+                : Files.getDateCreated(item.getFile(), attributeValue);
     }
 
     @Override

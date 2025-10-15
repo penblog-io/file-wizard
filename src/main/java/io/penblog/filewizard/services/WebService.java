@@ -1,6 +1,7 @@
 package io.penblog.filewizard.services;
 
 import javafx.application.HostServices;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -43,6 +44,8 @@ public class WebService extends BaseService {
                 getLogger().log(Level.SEVERE, "Connection: " + e.getMessage());
             } catch (IOException e) {
                 getLogger().log(Level.SEVERE, "IO: " + e.getMessage());
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }

@@ -12,15 +12,16 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane fx:id="paneRename" styleClass="background" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.penblog.filewizard.controllers.rename.RenameController">
+<AnchorPane fx:id="paneRename" styleClass="background" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.penblog.filewizard.controllers.rename.RenameController">
     <children>
         <BorderPane styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
                 <AnchorPane fx:id="paneAction" prefHeight="54.0" prefWidth="800.0" styleClass="background, pane-action" BorderPane.alignment="CENTER">
                     <children>
                         <Button fx:id="btnOpen" mnemonicParsing="false" onAction="#onOpenClick" prefWidth="80.0" text="Open" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
-                        <Button fx:id="btnRemove" layoutX="103.0" layoutY="15.0" mnemonicParsing="false" onAction="#onRemoveClick" prefWidth="80.0" text="Remove" AnchorPane.leftAnchor="103.0" AnchorPane.topAnchor="15.0" />
-                        <Button fx:id="btnClear" layoutX="193.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClearClick" prefWidth="80.0" text="Clear" />
+                        <Button fx:id="btnRemove" layoutX="103.0" layoutY="15.0" mnemonicParsing="false" onAction="#onRemoveClick" prefWidth="80.0" text="Remove" AnchorPane.leftAnchor="105.0" AnchorPane.topAnchor="15.0" />
+                        <Button fx:id="btnClear" layoutX="193.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClearClick" prefWidth="80.0" text="Clear" AnchorPane.leftAnchor="195.0" />
+                  <Button fx:id="btnSetting" layoutX="284.0" layoutY="15.0" mnemonicParsing="false" onAction="#onSettingClick" prefWidth="80.0" text="Settings" AnchorPane.leftAnchor="285.0" />
                         <Button fx:id="btnRename" layoutX="815.0" layoutY="15.0" mnemonicParsing="false" onAction="#onRenameClick" prefWidth="80.0" text="Rename" AnchorPane.rightAnchor="15.0" />
                     </children>
                 </AnchorPane>

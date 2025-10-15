@@ -96,10 +96,11 @@ public class MoveController {
                 if (item.isError()) skip++;
                 else success++;
             }
-            InfoBox.getInstance().show("Status", "",
-                    success + " item" + (success > 1 ? "s have" : " has") + " been moved.\n" +
-                            skip + " item" + (skip > 1 ? "s have" : " has") + " been skipped.\n");
-
+            if (skip > 0) {
+                InfoBox.getInstance().show("Status", "",
+                        success + " item" + (success > 1 ? "s have" : " has") + " been moved.\n" +
+                                skip + " item" + (skip > 1 ? "s have" : " has") + " been skipped.\n");
+            }
             moverService.clearNonErrorItems();
             tbMove.refresh();
         });
@@ -112,7 +113,7 @@ public class MoveController {
      */
     @FXML
     public void onOpenClick() {
-        List<File> files = new FileDialog(settingService.setting().getLastOpenDirectory()).openMultipleSelect();
+        List<File> files = new FileDialog(settingService.getSetting().getLastOpenDirectory()).openMultipleSelect();
         if (files != null) setFiles(files);
     }
 
@@ -230,7 +231,7 @@ public class MoveController {
      */
     @FXML
     public void onSpecificRadioButtonClick() {
-        File moveTarget = new DirectoryDialog(settingService.setting().getLastOpenDirectory()).openSingleSelect();
+        File moveTarget = new DirectoryDialog(settingService.getSetting().getLastOpenDirectory()).openSingleSelect();
         if (moveTarget != null) {
             settingService.setLastOpenDirectory(moveTarget.getParentFile());
             settingService.write();

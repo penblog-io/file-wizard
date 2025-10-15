@@ -13,7 +13,9 @@ import java.io.IOException;
 public class DateModified implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException {
-        return Files.getDateModified(item.getFile(), attributeValue);
+        return "timestamp".equals(attributeValue)
+                ? Files.getDateModifiedAsTimestamp(item.getFile(), attributeValue)
+                : Files.getDateModified(item.getFile(), attributeValue);
     }
 
     @Override

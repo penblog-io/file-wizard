@@ -2,12 +2,12 @@ package io.penblog.filewizard.services;
 
 
 import io.penblog.filewizard.attributes.*;
-import io.penblog.filewizard.helpers.SystemUtils;
-import io.penblog.filewizard.movers.NewName;
-import io.penblog.filewizard.renamers.*;
 import io.penblog.filewizard.enums.Attribute;
 import io.penblog.filewizard.enums.MoveMethod;
 import io.penblog.filewizard.enums.RenameMethod;
+import io.penblog.filewizard.helpers.SystemUtils;
+import io.penblog.filewizard.movers.NewName;
+import io.penblog.filewizard.renamers.*;
 
 import java.io.IOException;
 import java.util.Properties;

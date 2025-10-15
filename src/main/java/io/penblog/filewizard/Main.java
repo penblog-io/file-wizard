@@ -38,7 +38,8 @@ public class Main extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root, 1200, 700);
 
-        new JMetro(scene, Style.LIGHT);
+        JMetro jMetro = new JMetro(scene, settingService.getTheme());
+        settingService.setMainJMetro(jMetro);
 
         scene.getStylesheets().add("views/style.css");
 
@@ -70,7 +71,7 @@ public class Main extends Application {
 
         // check for update and show a dialog
         if (webService.hasUpdate()) {
-            if (settingService.setting().isNotifyAvailableUpdate()) {
+            if (settingService.getSetting().isNotifyAvailableUpdate()) {
                 CheckUpdateDialog checkUpdateDialog = new CheckUpdateDialog(properties, settingService, webService);
                 checkUpdateDialog.show();
             }

@@ -2,6 +2,8 @@ package io.penblog.filewizard.services;
 
 import io.penblog.filewizard.components.Setting;
 import io.penblog.filewizard.helpers.SystemUtils;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 import java.io.*;
 import java.util.logging.Level;
@@ -9,7 +11,9 @@ import java.util.logging.Logger;
 
 public class SettingService extends BaseService {
 
-    protected final Setting setting;
+    protected JMetro mainJMetro;
+    protected JMetro settingJMetro;
+    protected Setting setting;
 
     public SettingService(Logger logger) {
         super(logger);
@@ -46,6 +50,7 @@ public class SettingService extends BaseService {
                             if (lastOpenDirectory.exists()) setting.setLastOpenDirectory(lastOpenDirectory);
                         }
                         case Setting.NOTIFY_AVAILABLE_UPDATE -> setting.setNotifyAvailableUpdate(value.equals("1"));
+                        case Setting.THEME_MODE -> setting.setThemeMode(value);
                     }
 
                 }
@@ -66,6 +71,15 @@ public class SettingService extends BaseService {
         setting.setNotifyAvailableUpdate(notify);
     }
 
+    public Style getTheme() {
+        if(Setting.THEME_MODE_LIGHT.equals(setting.getThemeMode())) {
+            return Style.LIGHT;
+        }
+        else {
+            return Style.DARK;
+        }
+    }
+
     /**
      * Write setting to settings.ini file
      */
@@ -84,10 +98,30 @@ public class SettingService extends BaseService {
         }
     }
 
-    public Setting setting() {
+
+    public void save(Setting setting) {
+        this.setting = setting;
+        write();
+    }
+
+    public Setting getSetting() {
         return setting;
     }
 
+    public void setSettingJMetro(JMetro settingJMetro) {
+        this.settingJMetro = settingJMetro;
+    }
+    public void setMainJMetro(JMetro mainJMetro) {
+        this.mainJMetro = mainJMetro;
+    }
+
+    public void reApplyTheme() {
+        mainJMetro.setStyle(getTheme());
+        mainJMetro.reApplyTheme();
+
+        settingJMetro.setStyle(getTheme());
+        settingJMetro.reApplyTheme();
+    }
 
     /**
      * Loading settings.ini file, create if not exists

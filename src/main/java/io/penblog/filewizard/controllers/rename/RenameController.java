@@ -4,6 +4,7 @@ import io.penblog.filewizard.components.Item;
 import io.penblog.filewizard.enums.RenameMethod;
 import io.penblog.filewizard.guis.dialog.FileDialog;
 import io.penblog.filewizard.guis.dialog.InfoBox;
+import io.penblog.filewizard.guis.dialog.SettingBox;
 import io.penblog.filewizard.guis.dialog.actions.TableAction;
 import io.penblog.filewizard.services.RenamerService;
 import io.penblog.filewizard.services.ServiceContainer;
@@ -67,6 +68,14 @@ public class RenameController {
     }
 
     /**
+     * on Clear button clicked, remove all files from the list
+     */
+    @FXML
+    public void onSettingClick() {
+        SettingBox.getInstance().show();
+    }
+
+    /**
      * on Rename button clicked, rename all files based on the selected method, then clear the item list
      */
     @FXML
@@ -89,9 +98,11 @@ public class RenameController {
                 else success++;
             }
 
-            InfoBox.getInstance().show("Status", "",
-                    success + " item" + (success > 1 ? "s have" : " has") + " been renamed.\n" +
-                            skip + " item" + (skip > 1 ? "s have" : " has") + " been skipped.");
+            if (skip > 0) {
+                InfoBox.getInstance().show("Status", "",
+                        success + " item" + (success > 1 ? "s have" : " has") + " been renamed.\n" +
+                                skip + " item" + (skip > 1 ? "s have" : " has") + " been skipped.");
+            }
 
             renamerService.clearNonErrorItems();
             tbRename.refresh();
@@ -105,7 +116,7 @@ public class RenameController {
      */
     @FXML
     public void onOpenClick() {
-        List<File> files = new FileDialog(settingService.setting().getLastOpenDirectory()).openMultipleSelect();
+        List<File> files = new FileDialog(settingService.getSetting().getLastOpenDirectory()).openMultipleSelect();
         if (files != null) setFiles(files);
     }
 

@@ -1,6 +1,11 @@
 {
   "dateAccessed": [
     [
+      "Timestamp",
+      "{dateAccessed:timestamp}",
+      ""
+    ],
+    [
       "22-12",
       "{dateAccessed:yy-MM}",
       ""
@@ -57,6 +62,11 @@
     ]
   ],
   "dateCreated": [
+    [
+      "Timestamp",
+      "{dateAccessed:timestamp}",
+      ""
+    ],
     [
       "22-12",
       "{dateCreated:yy-MM}",
@@ -115,6 +125,11 @@
   ],
   "dateModified": [
     [
+      "Timestamp",
+      "{dateAccessed:timestamp}",
+      ""
+    ],
+    [
       "22-12",
       "{dateModified:yy-MM}",
       ""
@@ -171,6 +186,11 @@
     ]
   ],
   "dateTaken": [
+    [
+      "Timestamp",
+      "{dateAccessed:timestamp}",
+      ""
+    ],
     [
       "22-12",
       "{dateTaken:yy-MM}",

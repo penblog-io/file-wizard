@@ -11,10 +11,12 @@ public class Setting {
     public static final String LAST_OPEN_LOCATION = "last_open_location";
     public static final String NOTIFY_AVAILABLE_UPDATE = "notify_available_update";
     public static final String THEME_MODE = "theme_mode";
+    public static final String THEME_MODE_LIGHT = "light";
+    public static final String THEME_MODE_DARK = "dark";
 
     protected File lastOpenDirectory;
     protected boolean notifyAvailableUpdate = true;
-    protected String themeMode = "dark";
+    protected String themeMode = THEME_MODE_DARK;
 
     public File getLastOpenDirectory() {
         return lastOpenDirectory;

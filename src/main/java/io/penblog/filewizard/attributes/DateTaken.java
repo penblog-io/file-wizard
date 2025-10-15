@@ -14,7 +14,9 @@ import java.io.IOException;
 public class DateTaken implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException, AttributeNotFoundException {
-        return Files.getDateTaken(item.getFile(), attributeValue);
+        return "timestamp".equals(attributeValue)
+                ? Files.getDateTakenAsTimestamp(item.getFile(), attributeValue)
+                : Files.getDateTaken(item.getFile(), attributeValue);
     }
 
     @Override

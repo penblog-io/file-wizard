@@ -1,5 +1,6 @@
 package io.penblog.filewizard.controllers.rename.methods;
 
+import io.penblog.filewizard.helpers.Control;
 import io.penblog.filewizard.helpers.Files;
 import io.penblog.filewizard.services.RenamerService;
 import javafx.concurrent.Task;
@@ -57,7 +58,8 @@ public class Append {
         renameState.addPropertyChangeListener(evt -> {
             if ("selectedAttributeFormat".equals(evt.getPropertyName())
                     && renameState.getSelectedMethod() == RenameMethod.APPEND) {
-                txtAppend.setText(evt.getNewValue() == null ? "" : evt.getNewValue().toString());
+
+                Control.insertAtCaret(txtAppend, evt.getNewValue() == null ? "" : evt.getNewValue().toString());
             }
         });
     }

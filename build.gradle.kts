@@ -89,7 +89,7 @@ javafx {
 
 
 val appName = "File Wizard"
-val appVers = "2.1.1"
+val appVers = "2.2.0"
 val appDescription = "A powerful tool allows you rename or move your files automatically."
 val appLicenseFile = "${buildDir}/resources/main/LICENSE.md"
 val appLicenseType = "GPLv3"

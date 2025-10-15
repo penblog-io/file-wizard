@@ -6,11 +6,14 @@ import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import io.penblog.filewizard.exceptions.AttributeNotFoundException;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.attribute.FileTime;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 
@@ -29,10 +32,26 @@ public class Files {
     }
 
     /**
+     * Get creation date as a timestamp
+     */
+    public static String getDateCreatedAsTimestamp(File file) throws IOException {
+        LocalDateTime dateTime = getDateAsLocalDateTime(file, "creationTime");
+        return String.valueOf(dateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+    }
+
+    /**
      * Get last modified date of a file
      */
     public static String getDateModified(File file, String format) throws IOException {
         return getDateAsString(file, format, "lastModifiedTime");
+    }
+
+    /**
+     * Get last modified date as a timestamp
+     */
+    public static String getDateModifiedAsTimestamp(File file, String format) throws IOException {
+        LocalDateTime dateTime = getDateAsLocalDateTime(file, "lastModifiedTime");
+        return String.valueOf(dateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
     }
 
     /**
@@ -43,14 +62,38 @@ public class Files {
     }
 
     /**
+     * Get last accessed date as a timestamp
+     */
+    public static String getDateAccessedAsTimestamp(File file, String format) throws IOException {
+        LocalDateTime dateTime = getDateAsLocalDateTime(file, "lastAccessTime");
+        return String.valueOf(dateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+    }
+
+    /**
      * get taken date of a media file
      */
     public static String getDateTaken(File file, String format) throws IOException, AttributeNotFoundException {
         String value = metadata(file, "Exif SubIFD", 0x9003);
-        if (value.length() == 0) return "";
+        if (value.isEmpty()) return "";
 
         return LocalDateTime.parse(value, DateTimeFormatter.ofPattern("yyyy:MM:dd HH:mm:ss"))
                 .format(DateTimeFormatter.ofPattern(format));
+    }
+
+    /**
+     * Get taken date as a timestamp
+     */
+    public static String getDateTakenAsTimestamp(File file, String format)
+            throws IOException, AttributeNotFoundException {
+        String value = metadata(file, "Exif SubIFD", 0x9003);
+        if (value.isEmpty()) return "";
+
+        return String
+                .valueOf(
+                        LocalDateTime
+                                .parse(value, DateTimeFormatter.ofPattern("yyyy:MM:dd HH:mm:ss"))
+                                .atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
+                );
     }
 
 
@@ -229,6 +272,17 @@ public class Files {
         SimpleDateFormat formatter = new SimpleDateFormat(format);
         FileTime fileTime = (FileTime) getFileAttribute(file, fileAttribute);
         return formatter.format(new java.util.Date(fileTime.toMillis()));
+    }
+
+    /**
+     * helper method that convert FileTime to a LocalDateTime object
+     */
+    private static LocalDateTime getDateAsLocalDateTime(File file, String fileAttribute) throws IOException {
+        FileTime fileTime = (FileTime) getFileAttribute(file, fileAttribute);
+        // Convert FileTime to Instant
+        Instant instant = fileTime.toInstant();
+        // Convert Instant to LocalDateTime using system default time zone
+        return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
     }
 
     /**

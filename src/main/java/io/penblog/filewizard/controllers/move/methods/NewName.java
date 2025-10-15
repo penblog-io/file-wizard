@@ -1,6 +1,7 @@
 package io.penblog.filewizard.controllers.move.methods;
 
 import io.penblog.filewizard.enums.options.Option;
+import io.penblog.filewizard.helpers.Control;
 import io.penblog.filewizard.helpers.Files;
 import io.penblog.filewizard.services.MoverService;
 import io.penblog.filewizard.services.ServiceContainer;
@@ -57,7 +58,7 @@ public class NewName {
         moveState.addPropertyChangeListener(evt -> {
             if ("selectedAttributeFormat".equals(evt.getPropertyName())
                     && moveState.getSelectedMethod() == MoveMethod.NEW_NAME) {
-                txtNewName.setText(evt.getNewValue() == null ? "" : evt.getNewValue().toString());
+                Control.insertAtCaret(txtNewName, evt.getNewValue() == null ? "" : evt.getNewValue().toString());
             }
         });
     }

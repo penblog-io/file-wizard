@@ -33,7 +33,7 @@ public class Remove extends RenamerAbstract {
                     Pattern.compile(remove);
             newName = pattern.matcher(name).replaceAll("");
         } else {
-            newName = name.replace(remove, "");
+            newName = name.replaceFirst(remove, "");
         }
 
         if (newName.equals(name)) throw new SameFilenameException();
