@@ -11,3 +11,9 @@ that.
 
 - Official website: [filewizard.app](https://filewizard.app)
 - List of all available attributes: [filewizard.app/attributes](https://filewizard.app/attributes)
+
+What's New 2.2.0?
+
+- Add a settings dialog to switch to between Light and Dark theme.
+- Add timestamp format for date attributes (access, create, modify, and date taken).
+- Minor bug fixes.
