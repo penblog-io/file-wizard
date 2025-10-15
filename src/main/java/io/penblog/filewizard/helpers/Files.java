@@ -83,7 +83,7 @@ public class Files {
     /**
      * Get taken date as a timestamp
      */
-    public static String getDateTakenAsTimestamp(File file, String format)
+    public static String getDateTakenAsTimestamp(File file)
             throws IOException, AttributeNotFoundException {
         String value = metadata(file, "Exif SubIFD", 0x9003);
         if (value.isEmpty()) return "";
