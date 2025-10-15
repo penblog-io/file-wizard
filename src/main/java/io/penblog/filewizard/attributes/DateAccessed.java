@@ -14,7 +14,7 @@ public class DateAccessed implements AttributeGeneratorInterface {
     @Override
     public String generate(Item item, String attributeValue) throws IOException {
         return "timestamp".equals(attributeValue)
-                ? Files.getDateAccessedAsTimestamp(item.getFile(), attributeValue)
+                ? Files.getDateAccessedAsTimestamp(item.getFile())
                 : Files.getDateAccessed(item.getFile(), attributeValue);
     }
 

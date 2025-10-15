@@ -23,7 +23,7 @@ public class Remove extends RenamerAbstract {
         if (remove == null || caseInsensitive == null || regex == null) throw new MissingOptionException();
 
         remove = getAttributeService().convert(remove, attributes, item);
-        if (remove.equals("")) throw new SameFilenameException();
+        if (remove.isEmpty()) throw new SameFilenameException();
 
         String name = Files.getName(item.getFile());
 

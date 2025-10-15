@@ -49,7 +49,7 @@ public class Files {
     /**
      * Get last modified date as a timestamp
      */
-    public static String getDateModifiedAsTimestamp(File file, String format) throws IOException {
+    public static String getDateModifiedAsTimestamp(File file) throws IOException {
         LocalDateTime dateTime = getDateAsLocalDateTime(file, "lastModifiedTime");
         return String.valueOf(dateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
     }
@@ -64,7 +64,7 @@ public class Files {
     /**
      * Get last accessed date as a timestamp
      */
-    public static String getDateAccessedAsTimestamp(File file, String format) throws IOException {
+    public static String getDateAccessedAsTimestamp(File file) throws IOException {
         LocalDateTime dateTime = getDateAsLocalDateTime(file, "lastAccessTime");
         return String.valueOf(dateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
     }

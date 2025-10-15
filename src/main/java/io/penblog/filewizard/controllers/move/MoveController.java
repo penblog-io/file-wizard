@@ -138,7 +138,7 @@ public class MoveController {
      * Add selected/dragged files to ItemService, immediately trigger "preview" method.
      */
     private void setFiles(List<File> files) {
-        if (files.size() > 0) {
+        if (!files.isEmpty()) {
             moverService.setFiles(files);
             settingService.setLastOpenDirectory(files.get(0).getParentFile());
             settingService.write();

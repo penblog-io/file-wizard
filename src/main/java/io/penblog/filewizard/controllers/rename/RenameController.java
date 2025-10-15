@@ -144,7 +144,7 @@ public class RenameController {
         new Thread(new Task<Void>() {
             @Override
             protected Void call() {
-                if (files.size() > 0) {
+                if (!files.isEmpty()) {
                     renamerService.setFiles(files);
                     settingService.setLastOpenDirectory(files.get(0).getParentFile());
                     settingService.write();
